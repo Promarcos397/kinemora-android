@@ -1,40 +1,23 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Movie } from '../types';
 
 interface MobileRowProps {
-    title?: string;
+    title: string;
     movies: Movie[];
     onMovieClick: (movie: Movie) => void;
-    cardWidth?: number;
 }
 
 /**
- * Mobile horizontal row - touch-friendly, no arrows
- * Uses momentum scrolling with snap
+ * Mobile Row - Horizontal scrolling content row with poster cards
+ * Touch-friendly, no arrows, momentum scrolling
  */
-export default function MobileRow({
-    title,
-    movies,
-    onMovieClick,
-    cardWidth = 110
-}: MobileRowProps) {
-    const scrollRef = useRef<HTMLDivElement>(null);
-
+export default function MobileRow({ title, movies, onMovieClick }: MobileRowProps) {
     if (!movies || movies.length === 0) return null;
 
     return (
-        <div className="mb-4">
-            {/* Row title */}
-            {title && (
-                <h2 className="px-4 text-base font-semibold mb-2">{title}</h2>
-            )}
-
-            {/* Scrollable row - NO ARROWS */}
-            <div
-                ref={scrollRef}
-                className="row-scroll px-4"
-                style={{ scrollSnapType: 'x mandatory' }}
-            >
+        <div className="content-section">
+            <h2 className="content-section-title">{title}</h2>
+            <div className="content-row">
                 {movies.map((movie) => {
                     const posterUrl = movie.poster_path
                         ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
@@ -44,13 +27,11 @@ export default function MobileRow({
                         <button
                             key={movie.id}
                             onClick={() => onMovieClick(movie)}
-                            className="flex-shrink-0"
-                            style={{ width: cardWidth, scrollSnapAlign: 'start' }}
+                            className="poster-card"
                         >
                             <img
                                 src={posterUrl}
-                                alt={movie.title || movie.name}
-                                className="w-full aspect-[2/3] object-cover rounded"
+                                alt={movie.title || movie.name || 'Movie'}
                                 loading="lazy"
                             />
                         </button>

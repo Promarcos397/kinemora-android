@@ -1,41 +1,41 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { House, FilmStrip, Fire, BookOpen, User } from '@phosphor-icons/react';
-
-interface BottomNavProps {
-    className?: string;
-}
+import { House, BookOpen, Fire, Heart } from '@phosphor-icons/react';
 
 /**
- * Mobile Bottom Navigation Bar (Netflix-style)
- * Replaces desktop top navbar on mobile
+ * Bottom Navigation Bar - Solid background (NOT transparent)
+ * Tabs: Home, Reads, New & Hot, My List
  */
-export default function BottomNav({ className }: BottomNavProps) {
+export default function BottomNav() {
     const location = useLocation();
     const navigate = useNavigate();
 
     const tabs = [
         { id: 'home', path: '/', icon: House, label: 'Home' },
-        { id: 'movies', path: '/movies', icon: FilmStrip, label: 'Movies' },
-        { id: 'new', path: '/new-popular', icon: Fire, label: 'New & Hot' },
         { id: 'reads', path: '/reads', icon: BookOpen, label: 'Reads' },
-        { id: 'mylist', path: '/my-list', icon: User, label: 'My List' },
+        { id: 'new', path: '/new-popular', icon: Fire, label: 'New & Hot' },
+        { id: 'mylist', path: '/my-list', icon: Heart, label: 'My List' },
     ];
 
     const getActiveTab = () => {
         const path = location.pathname;
         if (path === '/') return 'home';
-        if (path.startsWith('/movies')) return 'movies';
-        if (path.startsWith('/new-popular')) return 'new';
         if (path.startsWith('/reads') || path.startsWith('/reader')) return 'reads';
+        if (path.startsWith('/new-popular')) return 'new';
         if (path.startsWith('/my-list')) return 'mylist';
         return 'home';
     };
 
     const activeTab = getActiveTab();
 
+    // Don't show on certain pages
+    const hideOn = ['/watch', '/read/', '/search', '/settings'];
+    if (hideOn.some(p => location.pathname.startsWith(p))) {
+        return null;
+    }
+
     return (
-        <nav className={`bottom-nav ${className || ''}`}>
+        <nav className="bottom-nav">
             {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
