@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kinemora</string>
+    <string name="title_activity_main">Kinemora</string>
+    <string name="package_name">com.kinemora.app</string>
+    <string name="custom_url_scheme">com.kinemora.app</string>
+</resources>

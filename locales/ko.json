@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "홈",
+        "shows": "시리즈",
+        "movies": "영화",
+        "newPopular": "NEW! 요즘 대세",
+        "myList": "내가 찜한 콘텐츠"
+    },
+    "hero": {
+        "play": "재생",
+        "moreInfo": "상세 정보",
+        "mute": "음소거",
+        "unmute": "음소거 해제",
+        "replay": "다시보기"
+    },
+    "common": {
+        "search": "검색",
+        "cancel": "취소",
+        "save": "저장",
+        "saveRefresh": "저장 및 새로고침",
+        "loading": "로딩 중...",
+        "noResults": "결과 없음",
+        "error": "오류가 발생했습니다",
+        "noImage": "이미지 없음",
+        "noDesc": "설명이 없습니다.",
+        "noEpisodes": "정보 없음",
+        "match": "{{score}}% 일치",
+        "hour": "시간",
+        "minute": "분",
+        "min": "분",
+        "series": "시리즈",
+        "movie": "영화",
+        "cast": "출연:",
+        "genres": "장르:",
+        "maturity": {
+            "rated": "관람등급",
+            "adultDesc": "폭력성, 언어, 유혈",
+            "teenDesc": "언어, 약한 주제"
+        },
+        "season": "시즌"
+    },
+    "settings": {
+        "title": "프로필 및 기본 설정 관리",
+        "preferences": "기본 설정",
+        "languages": "언어",
+        "subtitleAppearance": "자막 모양",
+        "playbackSettings": "재생 설정",
+        "notifications": "알림 설정",
+        "languagesSub": "표시 및 오디오 언어 설정",
+        "subtitleAppearanceSub": "자막 표시 방식 사용자 지정",
+        "playbackSettingsSub": "자동 재생 및 오디오, 화질 설정",
+        "notificationsSub": "이메일, 문자, 푸시 알림 관리",
+        "displayLanguage": "표시 언어",
+        "displayLanguageDesc": "영화 제목, 설명 및 기타 콘텐츠의 언어를 설정합니다.",
+        "subtitleLanguage": "선호하는 자막 언어",
+        "subtitleLanguageDesc": "가능한 경우 이 언어의 자막을 자동으로 선택합니다.",
+        "languageNote": "표시 언어는 영화 제목과 설명에 영향을 줍니다. 자막 환경설정은 새 비디오를 시작할 때 적용됩니다.",
+        "resetConfirm": "기본 재생 및 자막 설정을 복원하시겠습니까?"
+    },
+    "rows": {
+        "trending": "지금 뜨는 콘텐츠",
+        "topRated": "최고 평점",
+        "netflixOriginals": "넷플릭스 오리지널",
+        "action": "액션",
+        "comedy": "코미디",
+        "horror": "공포",
+        "romance": "로맨스",
+        "documentaries": "다큐멘터리",
+        "sciFi": "SF",
+        "continueWatching": "시청 중인 콘텐츠",
+        "myList": "내가 찜한 콘텐츠",
+        "recommended": "추천 콘텐츠",
+        "reality": "리얼리티 TV",
+        "drama": "TV 드라마",
+        "crime": "범죄 시리즈",
+        "newOnNetflix": "넷플릭스 신작",
+        "worthWait": "공개 예정",
+        "comingSoon": "공개 임박",
+        "top10TV": "오늘 한국의 TOP 10 시리즈",
+        "top10Movies": "오늘 한국의 TOP 10 영화",
+        "exploreAll": "모두 보기"
+    },
+    "sort": {
+        "dateAdded": "최근 등록",
+        "releaseDate": "공개일",
+        "rating": "평점순",
+        "title": "제목 (가나다)"
+    },
+    "list": {
+        "all": "전체",
+        "movies": "영화",
+        "shows": "시리즈",
+        "empty": "찜한 콘텐츠가 없습니다",
+        "emptyDesc": "찜한 영화와 시리즈가 여기에 표시됩니다. 보고 싶은 콘텐츠를 찜해두세요.",
+        "noMatches": "필터와 일치하는 콘텐츠가 없습니다.",
+        "reset": "필터 초기화"
+    },
+    "search": {
+        "explore": "관련 콘텐츠:",
+        "noMatches": "\"{{query}}\"에 대한 검색 결과가 없습니다.",
+        "suggestions": "제안:",
+        "tip1": "다른 키워드를 시도해 보세요",
+        "tip2": "영화나 시리즈를 찾고 계신가요?",
+        "tip3": "제목, 배우 이름으로 검색해 보세요"
+    },
+    "modal": {
+        "episodes": "회차",
+        "season": "시즌",
+        "cast": "출연",
+        "similar": "비슷한 콘텐츠",
+        "addToList": "찜하기",
+        "removeFromList": "찜 해제"
+    },
+    "player": {
+        "skipIntro": "오프닝 건너뛰기",
+        "nextEpisode": "다음 화",
+        "nextEp": "다음 화",
+        "playingIn": "다음 재생까지",
+        "back": "뒤로",
+        "off": "끄기",
+        "season": "시즌",
+        "rated": "등급",
+        "ratingDesc": "언어, 주제",
+        "skipOutro": "엔딩 건너뛰기"
+    },
+    "playback": {
+        "autoplayTitle": "자동 재생 설정",
+        "autoplayPreviews": "미리보기 자동 재생",
+        "autoplayPreviewsDesc": "모든 기기에서 탐색 중 예고편 자동 재생.",
+        "autoplayNext": "다음 화 자동 재생",
+        "autoplayNextDesc": "다음 에피소드 자동 시작.",
+        "dataNote": "데이터 사용 설정은 계정 프로필에서 관리됩니다."
+    },
+    "subtitles": {
+        "show": "자막 표시",
+        "fontFamily": "글꼴",
+        "edgeEffect": "가장자리 효과",
+        "textSize": "텍스트 크기",
+        "textColor": "텍스트 색상",
+        "windowBackground": "창 배경",
+        "opacity": "투명도",
+        "blur": "흐림",
+        "fonts": {
+            "monospace": "고정폭",
+            "typewriter": "타자기",
+            "print": "인쇄체",
+            "block": "블록",
+            "casual": "캐주얼",
+            "cursive": "필기체",
+            "smallCaps": "작은 대문자"
+        },
+        "edges": {
+            "none": "없음",
+            "raised": "볼록",
+            "depressed": "오목",
+            "uniform": "일반",
+            "dropShadow": "그림자"
+        },
+        "sizes": {
+            "tiny": "아주 작게",
+            "small": "작게",
+            "medium": "중간",
+            "large": "크게",
+            "huge": "아주 크게"
+        },
+        "colors": {
+            "white": "흰색",
+            "yellow": "노란색",
+            "cyan": "청록색",
+            "green": "녹색",
+            "red": "빨간색",
+            "blue": "파란색",
+            "black": "검은색"
+        }
+    },
+    "genres": {
+        "12": "모험",
+        "14": "판타지",
+        "16": "애니메이션",
+        "18": "드라마",
+        "27": "공포",
+        "28": "액션",
+        "35": "코미디",
+        "36": "역사",
+        "37": "서부",
+        "53": "스릴러",
+        "80": "범죄",
+        "99": "다큐멘터리",
+        "878": "SF",
+        "9648": "미스터리",
+        "10402": "음악",
+        "10749": "로맨스",
+        "10751": "가족",
+        "10752": "전쟁",
+        "10759": "액션 & 어드벤처",
+        "10762": "키즈",
+        "10763": "뉴스",
+        "10764": "리얼리티",
+        "10765": "SF & 판타지",
+        "10766": "소프",
+        "10767": "토크",
+        "10768": "전쟁 & 정치",
+        "10770": "TV 영화"
+    },
+    "badges": {
+        "comingSoon": "공개 예정",
+        "newEpisodes": "새로운 에피소드",
+        "recentlyAdded": "최근 등록",
+        "topRated": "최고 평점"
+    }
+}

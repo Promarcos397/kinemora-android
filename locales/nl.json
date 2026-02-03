@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "Home",
+        "shows": "Series",
+        "movies": "Films",
+        "newPopular": "Nieuw en populair",
+        "myList": "Mijn lijst"
+    },
+    "hero": {
+        "play": "Afspelen",
+        "moreInfo": "Meer info",
+        "mute": "Dempen",
+        "unmute": "Dempen opheffen",
+        "replay": "Opnieuw"
+    },
+    "common": {
+        "search": "Zoeken",
+        "cancel": "Annuleren",
+        "save": "Opslaan",
+        "saveRefresh": "Opslaan & Vernieuwen",
+        "loading": "Laden...",
+        "noResults": "Geen resultaten",
+        "error": "Er is iets misgegaan",
+        "noImage": "Geen afbeelding",
+        "noDesc": "Geen beschrijving beschikbaar.",
+        "noEpisodes": "Geen info.",
+        "match": "{{score}}% Match",
+        "hour": "u",
+        "minute": "m",
+        "min": "min",
+        "series": "Serie",
+        "movie": "Film",
+        "cast": "Cast:",
+        "genres": "Genres:",
+        "maturity": {
+            "rated": "KIJKWIJZER",
+            "adultDesc": "geweld, taal, bloed",
+            "teenDesc": "taal, lichte thema's"
+        },
+        "season": "Seizoen"
+    },
+    "settings": {
+        "title": "Profiel en voorkeuren beheren",
+        "preferences": "Voorkeuren",
+        "languages": "Talen",
+        "subtitleAppearance": "Ondertiteling uiterlijk",
+        "playbackSettings": "Afspeelinstellingen",
+        "notifications": "Meldingen instellingen",
+        "languagesSub": "Talen instellen voor weergave en audio",
+        "subtitleAppearanceSub": "Pas aan hoe ondertitels verschijnen",
+        "playbackSettingsSub": "Autoplay en kwaliteit instellen",
+        "notificationsSub": "Beheer e-mail, sms, pushmeldingen",
+        "displayLanguage": "Weergavetaal",
+        "displayLanguageDesc": "Stelt de taal in voor filmtitels, beschrijvingen en andere inhoud.",
+        "subtitleLanguage": "Voorkeurstaal ondertiteling",
+        "subtitleLanguageDesc": "Selecteert automatisch ondertitels in deze taal indien beschikbaar.",
+        "languageNote": "Weergavetaal beïnvloedt titels en beschrijvingen. Ondertitelvoorkeur geldt voor nieuwe video's.",
+        "resetConfirm": "Standaardinstellingen herstellen?"
+    },
+    "rows": {
+        "trending": "Nu populair",
+        "topRated": "Hoogst gewaardeerd",
+        "netflixOriginals": "Netflix Originals",
+        "action": "Actie",
+        "comedy": "Komedie",
+        "horror": "Horror",
+        "romance": "Romantiek",
+        "documentaries": "Documentaires",
+        "sciFi": "Sci-Fi",
+        "continueWatching": "Verder kijken",
+        "myList": "Mijn lijst",
+        "recommended": "Aanbevolen voor jou",
+        "reality": "Reality-tv",
+        "drama": "Drama",
+        "crime": "Misdaad",
+        "newOnNetflix": "Nieuw op Netflix",
+        "worthWait": "Het wachten waard",
+        "comingSoon": "Binnenkort",
+        "top10TV": "Top 10 Series vandaag",
+        "top10Movies": "Top 10 Films vandaag",
+        "exploreAll": "Alles bekijken"
+    },
+    "sort": {
+        "dateAdded": "Recent toegevoegd",
+        "releaseDate": "Releasedatum",
+        "rating": "Hoogste waardering",
+        "title": "Titel (A-Z)"
+    },
+    "list": {
+        "all": "Alles",
+        "movies": "Films",
+        "shows": "Series",
+        "empty": "Je lijst is leeg",
+        "emptyDesc": "Titels die je toevoegt verschijnen hier.",
+        "noMatches": "Geen titels gevonden.",
+        "reset": "Filters wissen"
+    },
+    "search": {
+        "explore": "Titels gerelateerd aan:",
+        "noMatches": "Geen resultaten voor \"{{query}}\".",
+        "suggestions": "Suggesties:",
+        "tip1": "Probeer andere zoekwoorden",
+        "tip2": "Zoek je een film of serie?",
+        "tip3": "Probeer titel of acteur"
+    },
+    "modal": {
+        "episodes": "Afleveringen",
+        "season": "Seizoen",
+        "cast": "Cast",
+        "similar": "Meer zoals dit",
+        "addToList": "Toevoegen aan lijst",
+        "removeFromList": "Verwijderen uit lijst"
+    },
+    "player": {
+        "skipIntro": "Intro overslaan",
+        "nextEpisode": "Volgende afl.",
+        "nextEp": "Volgende",
+        "playingIn": "Speelt in",
+        "back": "Terug",
+        "off": "Uit",
+        "season": "Seizoen",
+        "rated": "LEEFTIJD",
+        "ratingDesc": "taal, thema's",
+        "skipOutro": "Aftiteling overslaan"
+    },
+    "playback": {
+        "autoplayTitle": "Autoplay Instellingen",
+        "autoplayPreviews": "Previews automatisch afspelen",
+        "autoplayPreviewsDesc": "Trailers automatisch afspelen tijdens bladeren.",
+        "autoplayNext": "Volgende aflevering automatisch afspelen",
+        "autoplayNextDesc": "Start automatisch de volgende aflevering.",
+        "dataNote": "Dataverbruik instellingen worden beheerd in je accountprofiel."
+    },
+    "subtitles": {
+        "show": "Toon ondertitels",
+        "fontFamily": "Lettertype",
+        "edgeEffect": "Randeffect",
+        "textSize": "Tekstgrootte",
+        "textColor": "Tekstkleur",
+        "windowBackground": "Vensterachtergrond",
+        "opacity": "Dekking",
+        "blur": "Vervagen",
+        "fonts": {
+            "monospace": "Monospace",
+            "typewriter": "Typemachine",
+            "print": "Print",
+            "block": "Blok",
+            "casual": "Casual",
+            "cursive": "Cursief",
+            "smallCaps": "Kleine hoofdletters"
+        },
+        "edges": {
+            "none": "Geen",
+            "raised": "Verhoogd",
+            "depressed": "Verlaagd",
+            "uniform": "Uniform",
+            "dropShadow": "Slagschaduw"
+        },
+        "sizes": {
+            "tiny": "Zeer klein",
+            "small": "Klein",
+            "medium": "Gemiddeld",
+            "large": "Groot",
+            "huge": "Enorm"
+        },
+        "colors": {
+            "white": "Wit",
+            "yellow": "Geel",
+            "cyan": "Cyaan",
+            "green": "Groen",
+            "red": "Rood",
+            "blue": "Blauw",
+            "black": "Zwart"
+        }
+    },
+    "genres": {
+        "12": "Avontuur",
+        "14": "Fantasy",
+        "16": "Animatie",
+        "18": "Drama",
+        "27": "Horror",
+        "28": "Actie",
+        "35": "Komedie",
+        "36": "Geschiedenis",
+        "37": "Western",
+        "53": "Thriller",
+        "80": "Misdaad",
+        "99": "Documentaire",
+        "878": "Sciencefiction",
+        "9648": "Mysterie",
+        "10402": "Muziek",
+        "10749": "Romantiek",
+        "10751": "Familie",
+        "10752": "Oorlog",
+        "10759": "Actie & Avontuur",
+        "10762": "Kids",
+        "10763": "Nieuws",
+        "10764": "Reality",
+        "10765": "Sci-Fi & Fantasy",
+        "10766": "Soap",
+        "10767": "Talk",
+        "10768": "Oorlog & Politiek",
+        "10770": "TV-film"
+    },
+    "badges": {
+        "comingSoon": "BINNENKORT",
+        "newEpisodes": "NIEUWE AFLEVERINGEN",
+        "recentlyAdded": "RECENT TOEGEVOEGD",
+        "topRated": "HOOGST GEWAARDEERD"
+    }
+}

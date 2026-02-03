@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "Ana Sayfa",
+        "shows": "Diziler",
+        "movies": "Filmler",
+        "newPopular": "Yeni ve Popüler",
+        "myList": "Listem"
+    },
+    "hero": {
+        "play": "Oynat",
+        "moreInfo": "Daha Fazla Bilgi",
+        "mute": "Sessiz",
+        "unmute": "Sesi Aç",
+        "replay": "Tekrar Oynat"
+    },
+    "common": {
+        "search": "Ara",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "saveRefresh": "Kaydet ve Yenile",
+        "loading": "Yükleniyor...",
+        "noResults": "Sonuç bulunamadı",
+        "error": "Bir şeyler yanlış gitti",
+        "noImage": "Resim Yok",
+        "noDesc": "Açıklama mevcut değil.",
+        "noEpisodes": "Bilgi yok.",
+        "match": "%{{score}} Eşleşme",
+        "hour": "sa",
+        "minute": "dk",
+        "min": "dk",
+        "series": "Dizi",
+        "movie": "Film",
+        "cast": "Oyuncular:",
+        "genres": "Türler:",
+        "maturity": {
+            "rated": "SINIFLANDIRMA",
+            "adultDesc": "şiddet, dil, kan",
+            "teenDesc": "dil, hafif temalar"
+        },
+        "season": "Sezon"
+    },
+    "settings": {
+        "title": "Profil ve tercihleri yönet",
+        "preferences": "Tercihler",
+        "languages": "Diller",
+        "subtitleAppearance": "Altyazı görünümü",
+        "playbackSettings": "Oynatma ayarları",
+        "notifications": "Bildirim ayarları",
+        "languagesSub": "Görüntüleme ve ses dillerini ayarla",
+        "subtitleAppearanceSub": "Altyazıların görünümünü özelleştir",
+        "playbackSettingsSub": "Otomatik oynatma ve kaliteyi ayarla",
+        "notificationsSub": "E-posta, metin, anlık bildirimleri yönet",
+        "displayLanguage": "Görüntüleme Dili",
+        "displayLanguageDesc": "Film başlıkları, açıklamalar ve diğer içerikler için dili ayarlar.",
+        "subtitleLanguage": "Tercih Edilen Altyazı Dili",
+        "subtitleLanguageDesc": "Mevcut olduğunda altyazıları otomatik olarak bu dilde seçer.",
+        "languageNote": "Görüntüleme dili başlıkları ve açıklamaları etkiler. Altyazı tercihi yeni videolarda uygulanır.",
+        "resetConfirm": "Varsayılan ayarları geri yükle?"
+    },
+    "rows": {
+        "trending": "Gündemdekiler",
+        "topRated": "En Çok Beğenilenler",
+        "netflixOriginals": "Netflix Orijinal",
+        "action": "Aksiyon",
+        "comedy": "Komedi",
+        "horror": "Korku",
+        "romance": "Romantik",
+        "documentaries": "Belgesel",
+        "sciFi": "Bilim Kurgu",
+        "continueWatching": "İzlemeye Devam Et",
+        "myList": "Listem",
+        "recommended": "Sizin İçin Önerilenler",
+        "reality": "Reality Show",
+        "drama": "Drama",
+        "crime": "Suç",
+        "newOnNetflix": "Netflix'te Yeni",
+        "worthWait": "Beklemeye Değer",
+        "comingSoon": "Yakında",
+        "top10TV": "Bugün Top 10 Dizi",
+        "top10Movies": "Bugün Top 10 Film",
+        "exploreAll": "Hepsini gör"
+    },
+    "sort": {
+        "dateAdded": "Son Eklenenler",
+        "releaseDate": "Yayın Tarihi",
+        "rating": "Puan",
+        "title": "Başlık (A-Z)"
+    },
+    "list": {
+        "all": "Tümü",
+        "movies": "Filmler",
+        "shows": "Diziler",
+        "empty": "Listeniz boş",
+        "emptyDesc": "Eklediğiniz başlıklar burada görünecek.",
+        "noMatches": "Filtrelerinize uyan başlık bulunamadı.",
+        "reset": "Filtreleri Sıfırla"
+    },
+    "search": {
+        "explore": "İlgili başlıklar:",
+        "noMatches": "\"{{query}}\" araması için sonuç bulunamadı.",
+        "suggestions": "Öneriler:",
+        "tip1": "Farklı anahtar kelimeler deneyin",
+        "tip2": "Film veya dizi mi arıyorsunuz?",
+        "tip3": "Başlık veya oyuncu adı kullanmayı deneyin"
+    },
+    "modal": {
+        "episodes": "Bölümler",
+        "season": "Sezon",
+        "cast": "Oyuncular",
+        "similar": "Benzerleri",
+        "addToList": "Listeme Ekle",
+        "removeFromList": "Listemden Çıkar"
+    },
+    "player": {
+        "skipIntro": "Girişi Atla",
+        "nextEpisode": "Sonraki Bölüm",
+        "nextEp": "Sonraki",
+        "playingIn": "Oynatılıyor",
+        "back": "Geri",
+        "off": "Kapalı",
+        "season": "Sezon",
+        "rated": "YAŞ",
+        "ratingDesc": "dil, temalar",
+        "skipOutro": "Jeneriği Atla"
+    },
+    "playback": {
+        "autoplayTitle": "Otomatik Oynatma",
+        "autoplayPreviews": "Önizlemeleri Otomatik Oynat",
+        "autoplayPreviewsDesc": "Gezinirken fragmanları otomatik oynat.",
+        "autoplayNext": "Sonraki Bölümü Otomatik Oynat",
+        "autoplayNextDesc": "Sonraki bölümü otomatik başlat.",
+        "dataNote": "Veri kullanım ayarları profilinizden yönetilir."
+    },
+    "subtitles": {
+        "show": "Altyazıları Göster",
+        "fontFamily": "Yazı Tipi",
+        "edgeEffect": "Kenar Efekti",
+        "textSize": "Metin Boyutu",
+        "textColor": "Metin Rengi",
+        "windowBackground": "Pencere Arka Planı",
+        "opacity": "Opaklık",
+        "blur": "Bulanıklık",
+        "fonts": {
+            "monospace": "Eşaralıklı",
+            "typewriter": "Daktilo",
+            "print": "Basılı",
+            "block": "Blok",
+            "casual": "Gündelik",
+            "cursive": "El Yazısı",
+            "smallCaps": "Küçük Büyük Harfler"
+        },
+        "edges": {
+            "none": "Yok",
+            "raised": "Kabartma",
+            "depressed": "Gömülü",
+            "uniform": "Düz",
+            "dropShadow": "Gölge"
+        },
+        "sizes": {
+            "tiny": "Çok Küçük",
+            "small": "Küçük",
+            "medium": "Orta",
+            "large": "Büyük",
+            "huge": "Çok Büyük"
+        },
+        "colors": {
+            "white": "Beyaz",
+            "yellow": "Sarı",
+            "cyan": "Camgöbeği",
+            "green": "Yeşil",
+            "red": "Kırmızı",
+            "blue": "Mavi",
+            "black": "Siyah"
+        }
+    },
+    "genres": {
+        "12": "Macera",
+        "14": "Fantastik",
+        "16": "Animasyon",
+        "18": "Dram",
+        "27": "Korku",
+        "28": "Aksiyon",
+        "35": "Komedi",
+        "36": "Tarih",
+        "37": "Vahşi Batı",
+        "53": "Gerilim",
+        "80": "Suç",
+        "99": "Belgesel",
+        "878": "Bilim Kurgu",
+        "9648": "Gizem",
+        "10402": "Müzik",
+        "10749": "Romantik",
+        "10751": "Aile",
+        "10752": "Savaş",
+        "10759": "Aksiyon & Macera",
+        "10762": "Çocuk",
+        "10763": "Haber",
+        "10764": "Reality",
+        "10765": "Bilim Kurgu & Fantastik",
+        "10766": "Sabun",
+        "10767": "Talk",
+        "10768": "Savaş & Politika",
+        "10770": "TV Filmi"
+    },
+    "badges": {
+        "comingSoon": "YAKINDA",
+        "newEpisodes": "YENİ BÖLÜMLER",
+        "recentlyAdded": "YENİ EKLENDİ",
+        "topRated": "EN ÇOK BEĞENİLEN"
+    }
+}

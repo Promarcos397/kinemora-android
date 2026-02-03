@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "首页",
+        "shows": "剧集",
+        "movies": "电影",
+        "newPopular": "最新热门",
+        "myList": "我的片单"
+    },
+    "hero": {
+        "play": "播放",
+        "moreInfo": "更多信息",
+        "mute": "静音",
+        "unmute": "取消静音",
+        "replay": "重播"
+    },
+    "common": {
+        "search": "搜索",
+        "cancel": "取消",
+        "save": "保存",
+        "saveRefresh": "保存并刷新",
+        "loading": "加载中...",
+        "noResults": "未找到结果",
+        "error": "出错了",
+        "noImage": "无图片",
+        "noDesc": "暂无描述。",
+        "noEpisodes": "无信息",
+        "match": "{{score}}% 匹配",
+        "hour": "小时",
+        "minute": "分钟",
+        "min": "分",
+        "series": "剧集",
+        "movie": "电影",
+        "cast": "主演:",
+        "genres": "类型:",
+        "maturity": {
+            "rated": "分级",
+            "adultDesc": "暴力, 语言, 血腥",
+            "teenDesc": "语言, 轻微题材"
+        },
+        "season": "季"
+    },
+    "settings": {
+        "title": "管理个人资料和偏好",
+        "preferences": "偏好设置",
+        "languages": "语言",
+        "subtitleAppearance": "字幕外观",
+        "playbackSettings": "播放设置",
+        "notifications": "通知设置",
+        "languagesSub": "设置显示和音频语言",
+        "subtitleAppearanceSub": "自定义字幕显示方式",
+        "playbackSettingsSub": "设置自动播放和音视频质量",
+        "notificationsSub": "管理邮件、短信和推送通知",
+        "displayLanguage": "显示语言",
+        "displayLanguageDesc": "设置影片标题、描述和其他内容的语言。",
+        "subtitleLanguage": "首选字幕语言",
+        "subtitleLanguageDesc": "在可用时自动选择此语言的字幕。",
+        "languageNote": "显示语言会影响影片标题和描述。字幕偏好设置通过新视频生效。",
+        "resetConfirm": "恢复默认播放和字幕设置？"
+    },
+    "rows": {
+        "trending": "现正热播",
+        "topRated": "高分好评",
+        "netflixOriginals": "Netflix 原创",
+        "action": "动作",
+        "comedy": "喜剧",
+        "horror": "恐怖",
+        "romance": "爱情",
+        "documentaries": "纪录片",
+        "sciFi": "科幻",
+        "continueWatching": "继续观看",
+        "myList": "我的片单",
+        "recommended": "为您推荐",
+        "reality": "真人秀",
+        "drama": "剧情",
+        "crime": "犯罪",
+        "newOnNetflix": "Netflix 新片",
+        "worthWait": "值得等待",
+        "comingSoon": "即将上线",
+        "top10TV": "今日剧集 TOP 10",
+        "top10Movies": "今日电影 TOP 10",
+        "exploreAll": "浏览全部"
+    },
+    "sort": {
+        "dateAdded": "最近添加",
+        "releaseDate": "发行日期",
+        "rating": "评分最高",
+        "title": "标题 (A-Z)"
+    },
+    "list": {
+        "all": "全部",
+        "movies": "电影",
+        "shows": "剧集",
+        "empty": "您的片单为空",
+        "emptyDesc": "您添加到片单的影片将显示在这里。添加电影和剧集以跟踪您想观看的内容。",
+        "noMatches": "未找到匹配您筛选条件的影片。",
+        "reset": "重置筛选"
+    },
+    "search": {
+        "explore": "探索相关影片:",
+        "noMatches": "未找到与“{{query}}”匹配的结果。",
+        "suggestions": "建议:",
+        "tip1": "尝试不同的关键词",
+        "tip2": "正在寻找电影或剧集？",
+        "tip3": "尝试使用电影、剧集标题或演员姓名"
+    },
+    "modal": {
+        "episodes": "剧集",
+        "season": "季",
+        "cast": "演员阵容",
+        "similar": "相似内容",
+        "addToList": "加入片单",
+        "removeFromList": "移出片单"
+    },
+    "player": {
+        "skipIntro": "跳过片头",
+        "nextEpisode": "下一集",
+        "nextEp": "下一集",
+        "playingIn": "即将播放",
+        "back": "返回",
+        "off": "关闭",
+        "season": "季",
+        "rated": "分级",
+        "ratingDesc": "语言, 题材",
+        "skipOutro": "跳过片尾"
+    },
+    "playback": {
+        "autoplayTitle": "自动播放控制",
+        "autoplayPreviews": "自动播放预览",
+        "autoplayPreviewsDesc": "在所有设备上浏览时自动播放预告片。",
+        "autoplayNext": "自动播放下一集",
+        "autoplayNextDesc": "自动开始播放下一集。",
+        "dataNote": "每块屏幕的数据使用设置在您的账户资料中管理。"
+    },
+    "subtitles": {
+        "show": "显示字幕",
+        "fontFamily": "字体",
+        "edgeEffect": "边缘效果",
+        "textSize": "文字大小",
+        "textColor": "文字颜色",
+        "windowBackground": "窗口背景",
+        "opacity": "不透明度",
+        "blur": "模糊",
+        "fonts": {
+            "monospace": "等宽",
+            "typewriter": "打字机",
+            "print": "打印",
+            "block": "块状",
+            "casual": "休闲",
+            "cursive": "草书",
+            "smallCaps": "小型大写"
+        },
+        "edges": {
+            "none": "无",
+            "raised": "凸起",
+            "depressed": "凹陷",
+            "uniform": "均匀",
+            "dropShadow": "投影"
+        },
+        "sizes": {
+            "tiny": "极小",
+            "small": "小",
+            "medium": "中",
+            "large": "大",
+            "huge": "极大"
+        },
+        "colors": {
+            "white": "白",
+            "yellow": "黄",
+            "cyan": "青",
+            "green": "绿",
+            "red": "红",
+            "blue": "蓝",
+            "black": "黑"
+        }
+    },
+    "genres": {
+        "12": "冒险",
+        "14": "奇幻",
+        "16": "动画",
+        "18": "剧情",
+        "27": "恐怖",
+        "28": "动作",
+        "35": "喜剧",
+        "36": "历史",
+        "37": "西部",
+        "53": "惊悚",
+        "80": "犯罪",
+        "99": "纪录",
+        "878": "科幻",
+        "9648": "悬疑",
+        "10402": "音乐",
+        "10749": "爱情",
+        "10751": "家庭",
+        "10752": "战争",
+        "10759": "动作与冒险",
+        "10762": "儿童",
+        "10763": "新闻",
+        "10764": "真人秀",
+        "10765": "科幻与奇幻",
+        "10766": "肥皂剧",
+        "10767": "脱口秀",
+        "10768": "战争与政治",
+        "10770": "电视电影"
+    },
+    "badges": {
+        "comingSoon": "即将上线",
+        "newEpisodes": "新剧集",
+        "recentlyAdded": "最近添加",
+        "topRated": "高分好评"
+    }
+}

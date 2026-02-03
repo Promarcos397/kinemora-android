@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "Hem",
+        "shows": "Serier",
+        "movies": "Filmer",
+        "newPopular": "Nytt och populärt",
+        "myList": "Min lista"
+    },
+    "hero": {
+        "play": "Spela upp",
+        "moreInfo": "Mer info",
+        "mute": "Ljud av",
+        "unmute": "Ljud på",
+        "replay": "Spela igen"
+    },
+    "common": {
+        "search": "Sök",
+        "cancel": "Avbryt",
+        "save": "Spara",
+        "saveRefresh": "Spara & Uppdatera",
+        "loading": "Laddar...",
+        "noResults": "Inga resultat",
+        "error": "Något gick fel",
+        "noImage": "Ingen bild",
+        "noDesc": "Ingen beskrivning tillgänglig.",
+        "noEpisodes": "Ingen info.",
+        "match": "{{score}}% Matchning",
+        "hour": "tim",
+        "minute": "min",
+        "min": "min",
+        "series": "Serie",
+        "movie": "Film",
+        "cast": "I rollerna:",
+        "genres": "Genrer:",
+        "maturity": {
+            "rated": "ÅLDERSGRÄNS",
+            "adultDesc": "våld, språk, blod",
+            "teenDesc": "språk, milda teman"
+        },
+        "season": "Säsong"
+    },
+    "settings": {
+        "title": "Hantera profil och inställningar",
+        "preferences": "Inställningar",
+        "languages": "Språk",
+        "subtitleAppearance": "Undertextutseende",
+        "playbackSettings": "Uppspelningsinställningar",
+        "notifications": "Aviseringsinställningar",
+        "languagesSub": "Ställ in språk för visning och ljud",
+        "subtitleAppearanceSub": "Anpassa hur undertexter ser ut",
+        "playbackSettingsSub": "Ställ in autoplay och kvalitet",
+        "notificationsSub": "Hantera aviseringar",
+        "displayLanguage": "Visningsspråk",
+        "displayLanguageDesc": "Ställer in språket för titlar, beskrivningar och annat innehåll.",
+        "subtitleLanguage": "Föredraget undertextspråk",
+        "subtitleLanguageDesc": "Väljer automatiskt undertexter på detta språk när det finns.",
+        "languageNote": "Visningsspråk påverkar titlar och beskrivningar. Undertextinställningar gäller nya videor.",
+        "resetConfirm": "Återställ standardinställningar?"
+    },
+    "rows": {
+        "trending": "Populärt nu",
+        "topRated": "Högst betyg",
+        "netflixOriginals": "Netflix Originals",
+        "action": "Action",
+        "comedy": "Komedi",
+        "horror": "Skräck",
+        "romance": "Romantik",
+        "documentaries": "Dokumentärer",
+        "sciFi": "Sci-Fi",
+        "continueWatching": "Fortsätt titta",
+        "myList": "Min lista",
+        "recommended": "Rekommenderat för dig",
+        "reality": "Reality-TV",
+        "drama": "Drama",
+        "crime": "Kriminalare",
+        "newOnNetflix": "Nytt på Netflix",
+        "worthWait": "Värt att vänta på",
+        "comingSoon": "Kommer snart",
+        "top10TV": "Topp 10 serier idag",
+        "top10Movies": "Topp 10 filmer idag",
+        "exploreAll": "Utforska alla"
+    },
+    "sort": {
+        "dateAdded": "Nyligen tillagda",
+        "releaseDate": "Utgivningsdatum",
+        "rating": "Betyg",
+        "title": "Titel (A-Ö)"
+    },
+    "list": {
+        "all": "Alla",
+        "movies": "Filmer",
+        "shows": "Serier",
+        "empty": "Din lista är tom",
+        "emptyDesc": "Titlar du lägger till visas här.",
+        "noMatches": "Inga titlar hittades.",
+        "reset": "Återställ filter"
+    },
+    "search": {
+        "explore": "Titlar relaterade till:",
+        "noMatches": "Din sökning på \"{{query}}\" gav inga resultat.",
+        "suggestions": "Förslag:",
+        "tip1": "Prova andra sökord",
+        "tip2": "Letar du efter en film eller serie?",
+        "tip3": "Prova en titel eller skådespelare"
+    },
+    "modal": {
+        "episodes": "Avsnitt",
+        "season": "Säsong",
+        "cast": "Medverkande",
+        "similar": "Liknande",
+        "addToList": "Lägg till i lista",
+        "removeFromList": "Ta bort från lista"
+    },
+    "player": {
+        "skipIntro": "Hoppa över intro",
+        "nextEpisode": "Nästa avsnitt",
+        "nextEp": "Nästa",
+        "playingIn": "Spelas om",
+        "back": "Tillbaka",
+        "off": "Av",
+        "season": "Säsong",
+        "rated": "ÅLDER",
+        "ratingDesc": "språk, teman",
+        "skipOutro": "Hoppa över eftertexter"
+    },
+    "playback": {
+        "autoplayTitle": "Uppspelningskontroller",
+        "autoplayPreviews": "Spela upp förhandsvisningar",
+        "autoplayPreviewsDesc": "Spela trailers automatiskt när du bläddrar.",
+        "autoplayNext": "Spela upp nästa avsnitt",
+        "autoplayNextDesc": "Starta nästa avsnitt automatiskt.",
+        "dataNote": "Inställningar för dataanvändning hanteras i din profil."
+    },
+    "subtitles": {
+        "show": "Visa undertexter",
+        "fontFamily": "Teckensnitt",
+        "edgeEffect": "Kanteffekt",
+        "textSize": "Textstorlek",
+        "textColor": "Textfärg",
+        "windowBackground": "Fönsterbakgrund",
+        "opacity": "Opacitet",
+        "blur": "Oskärpa",
+        "fonts": {
+            "monospace": "Monospaced",
+            "typewriter": "Skrivmaskin",
+            "print": "Tryckt",
+            "block": "Block",
+            "casual": "Avslappnad",
+            "cursive": "Kursiv",
+            "smallCaps": "Kapitäler"
+        },
+        "edges": {
+            "none": "Ingen",
+            "raised": "Upphöjd",
+            "depressed": "Nedsänkt",
+            "uniform": "Enhetlig",
+            "dropShadow": "Skugga"
+        },
+        "sizes": {
+            "tiny": "Mycket liten",
+            "small": "Liten",
+            "medium": "Mellan",
+            "large": "Stor",
+            "huge": "Enorm"
+        },
+        "colors": {
+            "white": "Vit",
+            "yellow": "Gul",
+            "cyan": "Turkos",
+            "green": "Grön",
+            "red": "Röd",
+            "blue": "Blå",
+            "black": "Svart"
+        }
+    },
+    "genres": {
+        "12": "Äventyr",
+        "14": "Fantasy",
+        "16": "Animation",
+        "18": "Drama",
+        "27": "Skräck",
+        "28": "Action",
+        "35": "Komedi",
+        "36": "Historia",
+        "37": "Western",
+        "53": "Thriller",
+        "80": "Kriminal",
+        "99": "Dokumentär",
+        "878": "Science Fiction",
+        "9648": "Mysterium",
+        "10402": "Musik",
+        "10749": "Romantik",
+        "10751": "Familj",
+        "10752": "Krig",
+        "10759": "Action & Äventyr",
+        "10762": "Barn",
+        "10763": "Nyheter",
+        "10764": "Reality",
+        "10765": "Sci-Fi & Fantasy",
+        "10766": "Såpa",
+        "10767": "Pratshow",
+        "10768": "Krig & Politik",
+        "10770": "TV-film"
+    },
+    "badges": {
+        "comingSoon": "KOMMER SNART",
+        "newEpisodes": "NYA AVSNITT",
+        "recentlyAdded": "NYLIGEN TILLAGT",
+        "topRated": "HÖGST BETYG"
+    }
+}

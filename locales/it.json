@@ -1,0 +1,211 @@
+{
+    "nav": {
+        "home": "Home",
+        "shows": "Serie TV",
+        "movies": "Film",
+        "newPopular": "Nuovi e Popolari",
+        "myList": "La mia lista"
+    },
+    "hero": {
+        "play": "Riproduci",
+        "moreInfo": "Altre info",
+        "mute": "Disattiva audio",
+        "unmute": "Attiva audio",
+        "replay": "Ricomincia"
+    },
+    "common": {
+        "search": "Cerca",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "saveRefresh": "Salva e aggiorna",
+        "loading": "Caricamento...",
+        "noResults": "Nessun risultato",
+        "error": "Qualcosa è andato storto",
+        "noImage": "Nessuna immagine",
+        "noDesc": "Nessuna descrizione disponibile.",
+        "noEpisodes": "Nessuna info.",
+        "match": "Compatibilità: {{score}}%",
+        "hour": "h",
+        "minute": "m",
+        "min": "min",
+        "series": "Serie",
+        "movie": "Film",
+        "cast": "Cast:",
+        "genres": "Generi:",
+        "maturity": {
+            "rated": "CLASSIFICATO",
+            "adultDesc": "violenza, linguaggio, sangue",
+            "teenDesc": "linguaggio, temi lievi"
+        },
+        "season": "Stagione"
+    },
+    "settings": {
+        "title": "Gestisci profili e preferenze",
+        "preferences": "Preferenze",
+        "languages": "Lingue",
+        "subtitleAppearance": "Aspetto sottotitoli",
+        "playbackSettings": "Impostazioni di riproduzione",
+        "notifications": "Impostazioni notifiche",
+        "languagesSub": "Imposta lingue per visualizzazione e audio",
+        "subtitleAppearanceSub": "Personalizza come appaiono i sottotitoli",
+        "playbackSettingsSub": "Imposta autoplay e qualità audio/video",
+        "notificationsSub": "Gestisci notifiche email, sms, push",
+        "displayLanguage": "Lingua di visualizzazione",
+        "displayLanguageDesc": "Imposta la lingua per titoli, descrizioni e altro.",
+        "subtitleLanguage": "Lingua sottotitoli preferita",
+        "subtitleLanguageDesc": "Seleziona automaticamente i sottotitoli in questa lingua se disponibili.",
+        "languageNote": "La lingua di visualizzazione influenza titoli e descrizioni. La preferenza sottotitoli si applica ai nuovi video.",
+        "resetConfirm": "Ripristinare le impostazioni predefinite?"
+    },
+    "rows": {
+        "trending": "Di tendenza",
+        "topRated": "I più votati",
+        "netflixOriginals": "Originali Netflix",
+        "action": "Azione",
+        "comedy": "Commedia",
+        "horror": "Horror",
+        "romance": "Romantico",
+        "documentaries": "Documentari",
+        "sciFi": "Fantascienza",
+        "continueWatching": "Continua a guardare",
+        "myList": "La mia lista",
+        "recommended": "Consigliati per te",
+        "reality": "Reality TV",
+        "drama": "Drammatici",
+        "crime": "Crime",
+        "newOnNetflix": "Nuovi su Netflix",
+        "worthWait": "Vale la pena aspettare",
+        "comingSoon": "Prossimamente",
+        "top10TV": "Top 10 Serie TV oggi",
+        "top10Movies": "Top 10 Film oggi",
+        "exploreAll": "Esplora tutti"
+    },
+    "sort": {
+        "dateAdded": "Aggiunti di recente",
+        "releaseDate": "Data di uscita",
+        "rating": "Più votati",
+        "title": "Titolo (A-Z)"
+    },
+    "list": {
+        "all": "Tutti",
+        "movies": "Film",
+        "shows": "Serie TV",
+        "empty": "La tua lista è vuota",
+        "emptyDesc": "I titoli che aggiungi appariranno qui.",
+        "noMatches": "Nessun titolo trovato.",
+        "reset": "Reimposta filtri"
+    },
+    "search": {
+        "explore": "Esplora titoli relativi a:",
+        "noMatches": "La tua ricerca di \"{{query}}\" non ha prodotto risultati.",
+        "suggestions": "Suggerimenti:",
+        "tip1": "Prova parole chiave diverse",
+        "tip2": "Cerchi un film o una serie?",
+        "tip3": "Prova con il titolo o un attore"
+    },
+    "modal": {
+        "episodes": "Episodi",
+        "season": "Stagione",
+        "cast": "Cast",
+        "similar": "Simili",
+        "addToList": "Aggiungi alla lista",
+        "removeFromList": "Rimuovi dalla lista"
+    },
+    "player": {
+        "skipIntro": "Salta Intro",
+        "nextEpisode": "Prossimo Ep",
+        "nextEp": "Prossimo",
+        "playingIn": "Riproduzione in",
+        "back": "Indietro",
+        "off": "Disattivo",
+        "season": "Stagione",
+        "rated": "CLAS",
+        "ratingDesc": "linguaggio, temi",
+        "skipOutro": "Salta Outro"
+    },
+    "playback": {
+        "autoplayTitle": "Controlli Autoplay",
+        "autoplayPreviews": "Autoplay Anteprime",
+        "autoplayPreviewsDesc": "Riproduci automaticamente i trailer durante la navigazione.",
+        "autoplayNext": "Autoplay Prossimo Episodio",
+        "autoplayNextDesc": "Avvia automaticamente il prossimo episodio.",
+        "dataNote": "Le impostazioni sull'utilizzo dei dati sono gestite nel profilo."
+    },
+    "subtitles": {
+        "show": "Mostra sottotitoli",
+        "fontFamily": "Famiglia Font",
+        "edgeEffect": "Effetto Bordo",
+        "textSize": "Dimensione Testo",
+        "textColor": "Colore Testo",
+        "windowBackground": "Sfondo Finestra",
+        "opacity": "Opacità",
+        "blur": "Sfocatura",
+        "fonts": {
+            "monospace": "Monospazio",
+            "typewriter": "Macchina da scrivere",
+            "print": "Stampatello",
+            "block": "Blocco",
+            "casual": "Casual",
+            "cursive": "Corsivo",
+            "smallCaps": "Maiuscoletto"
+        },
+        "edges": {
+            "none": "Nessuno",
+            "raised": "In rilievo",
+            "depressed": "Incassato",
+            "uniform": "Uniforme",
+            "dropShadow": "Ombreggiato"
+        },
+        "sizes": {
+            "tiny": "Minuscolo",
+            "small": "Piccolo",
+            "medium": "Medio",
+            "large": "Grande",
+            "huge": "Enorme"
+        },
+        "colors": {
+            "white": "Bianco",
+            "yellow": "Giallo",
+            "cyan": "Ciano",
+            "green": "Verde",
+            "red": "Rosso",
+            "blue": "Blu",
+            "black": "Nero"
+        }
+    },
+    "genres": {
+        "12": "Avventura",
+        "14": "Fantasy",
+        "16": "Animazione",
+        "18": "Dramma",
+        "27": "Horror",
+        "28": "Azione",
+        "35": "Commedia",
+        "36": "Storia",
+        "37": "Western",
+        "53": "Thriller",
+        "80": "Crime",
+        "99": "Documentario",
+        "878": "Fantascienza",
+        "9648": "Mistero",
+        "10402": "Musica",
+        "10749": "Romance",
+        "10751": "Famiglia",
+        "10752": "Guerra",
+        "10759": "Action & Adventure",
+        "10762": "Bambini",
+        "10763": "News",
+        "10764": "Reality",
+        "10765": "Fantascienza & Fantasy",
+        "10766": "Soap",
+        "10767": "Talk",
+        "10768": "Guerra & Politica",
+        "10770": "Film TV"
+    },
+    "badges": {
+        "comingSoon": "PROSSIMAMENTE",
+        "newEpisodes": "NUOVI EPISODI",
+        "recentlyAdded": "AGGIUNTI DI RECENTE",
+        "topRated": "I PIÙ VOTATI"
+    }
+}
