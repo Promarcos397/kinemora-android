@@ -18,6 +18,50 @@ export const setApiLanguage = (language: string) => {
   currentLanguage = language;
 };
 
+// Popular movies
+export const getPopularMovies = async () => {
+  try {
+    const response = await api.get<TMDBResponse>('/movie/popular');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+    return { results: [] };
+  }
+};
+
+// Trending all (movies + TV)
+export const getTrendingAll = async () => {
+  try {
+    const response = await api.get<TMDBResponse>('/trending/all/week');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching trending:', error);
+    return { results: [] };
+  }
+};
+
+// Trending TV
+export const getTrendingTV = async () => {
+  try {
+    const response = await api.get<TMDBResponse>('/trending/tv/week');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching trending TV:', error);
+    return { results: [] };
+  }
+};
+
+// Top rated movies
+export const getTopRated = async () => {
+  try {
+    const response = await api.get<TMDBResponse>('/movie/top_rated');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching top rated:', error);
+    return { results: [] };
+  }
+};
+
 // Interceptor to add language to all requests
 api.interceptors.request.use((config) => {
   config.params = {
