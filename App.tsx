@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { GlobalProvider } from './context/GlobalContext';
+import { Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import OnboardingSelection from './components/OnboardingSelection';
 
@@ -30,8 +29,9 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 /**
  * Main App Component
+ * Note: GlobalProvider and HashRouter are in index.tsx
  */
-function AppContent() {
+export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   // Check if first launch
@@ -70,18 +70,5 @@ function AppContent() {
       {/* Fallback */}
       <Route path="*" element={<AppLayout><MobileHomePage /></AppLayout>} />
     </Routes>
-  );
-}
-
-/**
- * Root App with providers
- */
-export default function App() {
-  return (
-    <GlobalProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
-    </GlobalProvider>
   );
 }
