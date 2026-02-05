@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import OnboardingSelection from './components/OnboardingSelection';
-
-// Pages - using correct file names
 import MobileHomePage from './pages/MobileHomePage';
-import MoviesPage from './pages/MoviesPage';
-import TVShowsPage from './pages/TVShowsPage';
-import NewPopularPage from './pages/NewPopularPage';
-import MyListPage from './pages/MyListPage';
-import ReadsPage from './pages/ReadsPage';
-import SettingsPage from './pages/SettingsPage';
-import WatchPage from './pages/WatchPage';
-import ReaderPage from './pages/ReaderPage';
-import SearchResultsPage from './pages/SearchResultsPage';
+import MobileSearchPage from './pages/MobileSearchPage';
+import MobileWatchPage from './pages/MobileWatchPage';
+import MobileSettingsPage from './pages/MobileSettingsPage';
 
 /**
  * App Layout - Wraps content with BottomNav
@@ -53,19 +45,19 @@ export default function App() {
 
   return (
     <Routes>
-      {/* Main pages with bottom nav */}
+      {/* Main pages with bottom nav - all self-contained */}
       <Route path="/" element={<AppLayout><MobileHomePage /></AppLayout>} />
-      <Route path="/movies" element={<AppLayout><MoviesPage /></AppLayout>} />
-      <Route path="/tv-shows" element={<AppLayout><TVShowsPage /></AppLayout>} />
-      <Route path="/new-popular" element={<AppLayout><NewPopularPage /></AppLayout>} />
-      <Route path="/my-list" element={<AppLayout><MyListPage /></AppLayout>} />
-      <Route path="/reads" element={<AppLayout><ReadsPage /></AppLayout>} />
-      <Route path="/search" element={<AppLayout><SearchResultsPage /></AppLayout>} />
+      <Route path="/home" element={<AppLayout><MobileHomePage /></AppLayout>} />
+      <Route path="/reads" element={<AppLayout><MobileHomePage initialFilter="reads" /></AppLayout>} />
+      <Route path="/new-popular" element={<AppLayout><MobileHomePage initialFilter="new" /></AppLayout>} />
+      <Route path="/my-list" element={<AppLayout><MobileHomePage initialFilter="mylist" /></AppLayout>} />
+      <Route path="/series" element={<AppLayout><MobileHomePage initialFilter="series" /></AppLayout>} />
+      <Route path="/films" element={<AppLayout><MobileHomePage initialFilter="films" /></AppLayout>} />
+      <Route path="/search" element={<AppLayout><MobileSearchPage /></AppLayout>} />
 
       {/* Full screen pages (no bottom nav) */}
-      <Route path="/watch/:type/:id" element={<WatchPage />} />
-      <Route path="/reader/:provider/:bookId/:chapterId" element={<ReaderPage />} />
-      <Route path="/settings/*" element={<SettingsPage />} />
+      <Route path="/watch/:type/:id" element={<MobileWatchPage />} />
+      <Route path="/settings/*" element={<MobileSettingsPage />} />
 
       {/* Fallback */}
       <Route path="*" element={<AppLayout><MobileHomePage /></AppLayout>} />
