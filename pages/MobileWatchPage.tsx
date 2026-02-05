@@ -4,12 +4,23 @@ import { getMovieDetails, getSeasonDetails } from '../services/api';
 import {
     ArrowLeft, Play, Pause, SpeakerHigh, SpeakerSlash,
     ArrowCounterClockwise, ArrowClockwise, X, Flag, DownloadSimple,
-    Scissors, Clock, MonitorPlay, Subtitles, SkipForward, Sun
+    Scissors, Clock, MonitorPlay, Subtitles, SkipForward, Sun, Check
 } from '@phosphor-icons/react';
+
+interface Episode {
+    id: number;
+    name: string;
+    episode_number: number;
+    still_path: string | null;
+    runtime: number;
+    overview: string;
+}
+
+const SPEED_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
 /**
  * Mobile Watch Page - Netflix-style video player
- * Landscape layout with full controls
+ * Full controls: brightness, seek, chapters, speed, episodes, subtitles
  */
 export default function MobileWatchPage() {
     const { type, id } = useParams();
@@ -25,12 +36,22 @@ export default function MobileWatchPage() {
     const [duration, setDuration] = useState(0);
     const [showControls, setShowControls] = useState(true);
     const [brightness, setBrightness] = useState(100);
+    const [playbackSpeed, setPlaybackSpeed] = useState(1);
 
     // Content state
     const [title, setTitle] = useState('');
     const [episodeTitle, setEpisodeTitle] = useState('');
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+
+    // Overlays state
+    const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+    const [showEpisodesPanel, setShowEpisodesPanel] = useState(false);
+    const [showSubtitlesPanel, setShowSubtitlesPanel] = useState(false);
+    const [episodes, setEpisodes] = useState<Episode[]>([]);
+    const [currentSeason, setCurrentSeason] = useState(1);
+    const [currentEpisode, setCurrentEpisode] = useState(1);
+    const [numberOfSeasons, setNumberOfSeasons] = useState(1);
 
     const season = searchParams.get('season');
     const episode = searchParams.get('episode');
@@ -43,16 +64,24 @@ export default function MobileWatchPage() {
                 if (type === 'tv' && id) {
                     const details = await getMovieDetails(Number(id), 'tv');
                     setTitle(details?.name || 'Unknown Show');
-                    if (season && episode) {
-                        setEpisodeTitle(`S${season}:E${episode} "Episode ${episode}"`);
-                    }
+                    setNumberOfSeasons(details?.number_of_seasons || 1);
+
+                    const seasonNum = parseInt(season || '1');
+                    const episodeNum = parseInt(episode || '1');
+                    setCurrentSeason(seasonNum);
+                    setCurrentEpisode(episodeNum);
+                    setEpisodeTitle(`S${seasonNum}:E${episodeNum}`);
+
+                    // Fetch episode list
+                    const seasonData = await getSeasonDetails(Number(id), seasonNum);
+                    setEpisodes(seasonData?.episodes || []);
                 } else if (type === 'movie' && id) {
                     const details = await getMovieDetails(Number(id), 'movie');
                     setTitle(details?.title || 'Unknown Movie');
                 }
 
-                // TODO: Get actual video URL from streaming service
-                // For now, we'll show the player UI without video
+                // TODO: Replace with Consumet API for actual streaming
+                // For now using a sample video for testing
                 setVideoUrl(null);
             } catch (err) {
                 console.error('Error loading content:', err);
@@ -66,15 +95,17 @@ export default function MobileWatchPage() {
 
     // Auto-hide controls
     useEffect(() => {
-        if (!isPlaying) return;
-
+        if (!isPlaying || showSpeedMenu || showEpisodesPanel || showSubtitlesPanel) return;
         const timer = setTimeout(() => setShowControls(false), 3000);
         return () => clearTimeout(timer);
-    }, [isPlaying, showControls]);
+    }, [isPlaying, showControls, showSpeedMenu, showEpisodesPanel, showSubtitlesPanel]);
 
     // Video controls
     const togglePlay = () => {
-        if (!videoRef.current) return;
+        if (!videoRef.current) {
+            setIsPlaying(!isPlaying);
+            return;
+        }
         if (isPlaying) {
             videoRef.current.pause();
         } else {
@@ -107,6 +138,26 @@ export default function MobileWatchPage() {
         videoRef.current.currentTime = percent * videoRef.current.duration;
     };
 
+    const handleSpeedChange = (speed: number) => {
+        setPlaybackSpeed(speed);
+        if (videoRef.current) {
+            videoRef.current.playbackRate = speed;
+        }
+        setShowSpeedMenu(false);
+    };
+
+    const handleEpisodeSelect = (episodeNum: number) => {
+        navigate(`/watch/tv/${id}?season=${currentSeason}&episode=${episodeNum}`, { replace: true });
+        setShowEpisodesPanel(false);
+    };
+
+    const handleNextEpisode = () => {
+        const nextEp = currentEpisode + 1;
+        if (episodes.length > 0 && nextEp <= episodes.length) {
+            handleEpisodeSelect(nextEp);
+        }
+    };
+
     const formatTime = (seconds: number) => {
         const hrs = Math.floor(seconds / 3600);
         const mins = Math.floor((seconds % 3600) / 60);
@@ -119,6 +170,12 @@ export default function MobileWatchPage() {
 
     const handleBack = () => navigate(-1);
 
+    const closeAllOverlays = () => {
+        setShowSpeedMenu(false);
+        setShowEpisodesPanel(false);
+        setShowSubtitlesPanel(false);
+    };
+
     if (loading) {
         return (
             <div className="fixed inset-0 bg-black flex items-center justify-center">
@@ -130,7 +187,13 @@ export default function MobileWatchPage() {
     return (
         <div
             className="fixed inset-0 bg-black text-white"
-            onClick={() => setShowControls(!showControls)}
+            onClick={() => {
+                if (showSpeedMenu || showEpisodesPanel || showSubtitlesPanel) {
+                    closeAllOverlays();
+                } else {
+                    setShowControls(!showControls);
+                }
+            }}
             style={{ filter: `brightness(${brightness}%)` }}
         >
             {/* Video element */}
@@ -146,7 +209,10 @@ export default function MobileWatchPage() {
                 />
             ) : (
                 <div className="w-full h-full flex items-center justify-center bg-black">
-                    <p className="text-gray-500">Video source unavailable</p>
+                    <div className="text-center">
+                        <p className="text-gray-500 mb-4">Video source unavailable</p>
+                        <p className="text-gray-600 text-sm">Consumet API integration needed</p>
+                    </div>
                 </div>
             )}
 
@@ -163,12 +229,13 @@ export default function MobileWatchPage() {
                         </button>
                         <div className="flex-1 text-center">
                             <span className="text-sm font-medium">
-                                {episodeTitle || title}
+                                {episodeTitle ? `${title} ${episodeTitle}` : title}
                             </span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <button className="p-2"><Flag size={20} /></button>
-                            <button className="p-2"><DownloadSimple size={20} /></button>
+                            <button onClick={toggleMute} className="p-2">
+                                {isMuted ? <SpeakerSlash size={20} /> : <SpeakerHigh size={20} />}
+                            </button>
                         </div>
                     </div>
 
@@ -181,7 +248,8 @@ export default function MobileWatchPage() {
                             max="100"
                             value={brightness}
                             onChange={(e) => setBrightness(Number(e.target.value))}
-                            className="w-24 h-1 -rotate-90 origin-center bg-white/30 rounded"
+                            className="w-24 h-1 -rotate-90 origin-center accent-white cursor-pointer"
+                            style={{ marginTop: '48px', marginBottom: '48px' }}
                         />
                     </div>
 
@@ -209,13 +277,13 @@ export default function MobileWatchPage() {
                     </div>
 
                     {/* Bottom controls */}
-                    <div className="p-4 space-y-4">
+                    <div className="p-4 space-y-3">
                         {/* Progress bar */}
                         <div
                             className="relative h-1 bg-white/30 rounded cursor-pointer"
                             onClick={handleSeek}
                         >
-                            {/* Buffer indicators (orange ticks) */}
+                            {/* Chapter markers (orange ticks) */}
                             {[0.1, 0.25, 0.5, 0.75, 0.9].map((pos, i) => (
                                 <div
                                     key={i}
@@ -230,38 +298,179 @@ export default function MobileWatchPage() {
                             />
                             {/* Scrubber dot */}
                             <div
-                                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-red-600 rounded-full"
-                                style={{ left: `${progress}%`, marginLeft: '-8px' }}
+                                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-red-600 rounded-full shadow-lg"
+                                style={{ left: `calc(${progress}% - 8px)` }}
                             />
                         </div>
 
                         {/* Time display */}
-                        <div className="flex justify-end">
-                            <span className="text-sm text-white/80">{formatTime(duration - currentTime)}</span>
+                        <div className="flex justify-between text-sm text-white/80">
+                            <span>{formatTime(currentTime)}</span>
+                            <span>-{formatTime(duration - currentTime)}</span>
                         </div>
 
                         {/* Control buttons row */}
-                        <div className="flex items-center justify-around">
+                        <div className="flex items-center justify-around pt-2">
                             <button className="flex flex-col items-center gap-1 text-white/80">
                                 <Scissors size={20} />
                                 <span className="text-xs">Clip</span>
                             </button>
-                            <button className="flex flex-col items-center gap-1 text-white/80">
+                            <button
+                                onClick={() => setShowSpeedMenu(true)}
+                                className="flex flex-col items-center gap-1 text-white/80"
+                            >
                                 <Clock size={20} />
-                                <span className="text-xs">Speed (1x)</span>
+                                <span className="text-xs">Speed ({playbackSpeed}x)</span>
                             </button>
-                            <button className="flex flex-col items-center gap-1 text-white/80">
-                                <MonitorPlay size={20} />
-                                <span className="text-xs">Episodes</span>
-                            </button>
-                            <button className="flex flex-col items-center gap-1 text-white/80">
+                            {type === 'tv' && (
+                                <button
+                                    onClick={() => setShowEpisodesPanel(true)}
+                                    className="flex flex-col items-center gap-1 text-white/80"
+                                >
+                                    <MonitorPlay size={20} />
+                                    <span className="text-xs">Episodes</span>
+                                </button>
+                            )}
+                            <button
+                                onClick={() => setShowSubtitlesPanel(true)}
+                                className="flex flex-col items-center gap-1 text-white/80"
+                            >
                                 <Subtitles size={20} />
-                                <span className="text-xs">Audio & Subtitles</span>
+                                <span className="text-xs">Audio</span>
                             </button>
-                            <button className="flex flex-col items-center gap-1 text-white/80">
-                                <SkipForward size={20} />
-                                <span className="text-xs">Next Ep.</span>
+                            {type === 'tv' && (
+                                <button
+                                    onClick={handleNextEpisode}
+                                    className="flex flex-col items-center gap-1 text-white/80"
+                                >
+                                    <SkipForward size={20} />
+                                    <span className="text-xs">Next Ep.</span>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Speed Menu Overlay */}
+            {showSpeedMenu && (
+                <div
+                    className="absolute inset-0 bg-black/80 flex items-center justify-center z-50"
+                    onClick={() => setShowSpeedMenu(false)}
+                >
+                    <div
+                        className="bg-[#1a1a1a] rounded-lg py-2 min-w-[150px]"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="px-4 py-2 text-sm font-semibold border-b border-white/10">
+                            Playback Speed
+                        </div>
+                        {SPEED_OPTIONS.map((speed) => (
+                            <button
+                                key={speed}
+                                onClick={() => handleSpeedChange(speed)}
+                                className={`w-full px-4 py-3 text-left flex items-center justify-between ${playbackSpeed === speed ? 'text-white' : 'text-gray-400'
+                                    }`}
+                            >
+                                <span>{speed}x{speed === 1 ? ' (Normal)' : ''}</span>
+                                {playbackSpeed === speed && <Check size={18} className="text-red-600" />}
                             </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Episodes Panel */}
+            {showEpisodesPanel && (
+                <div
+                    className="absolute inset-0 bg-black/90 z-50"
+                    onClick={() => setShowEpisodesPanel(false)}
+                >
+                    <div
+                        className="absolute right-0 top-0 bottom-0 w-80 bg-[#141414] overflow-y-auto"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="sticky top-0 bg-[#141414] px-4 py-4 border-b border-white/10 flex items-center justify-between">
+                            <h3 className="font-semibold">Season {currentSeason}</h3>
+                            <button onClick={() => setShowEpisodesPanel(false)}>
+                                <X size={20} />
+                            </button>
+                        </div>
+                        <div className="space-y-3 p-4">
+                            {episodes.map((ep) => (
+                                <div
+                                    key={ep.id}
+                                    onClick={() => handleEpisodeSelect(ep.episode_number)}
+                                    className={`cursor-pointer rounded-lg overflow-hidden ${currentEpisode === ep.episode_number ? 'ring-2 ring-red-600' : ''
+                                        }`}
+                                >
+                                    <div className="relative aspect-video bg-gray-800">
+                                        {ep.still_path ? (
+                                            <img
+                                                src={`https://image.tmdb.org/t/p/w300${ep.still_path}`}
+                                                alt={ep.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : null}
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="w-8 h-8 bg-black/60 rounded-full flex items-center justify-center">
+                                                <Play weight="fill" size={14} className="ml-0.5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="p-2 bg-[#2a2a2a]">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm font-medium">{ep.episode_number}. {ep.name}</span>
+                                            {ep.runtime && <span className="text-xs text-gray-500">{ep.runtime}m</span>}
+                                        </div>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">{ep.overview}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Audio & Subtitles Panel */}
+            {showSubtitlesPanel && (
+                <div
+                    className="absolute inset-0 bg-black/90 z-50"
+                    onClick={() => setShowSubtitlesPanel(false)}
+                >
+                    <div
+                        className="absolute right-0 top-0 bottom-0 w-80 bg-[#141414] overflow-y-auto"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="sticky top-0 bg-[#141414] px-4 py-4 border-b border-white/10 flex items-center justify-between">
+                            <h3 className="font-semibold">Audio & Subtitles</h3>
+                            <button onClick={() => setShowSubtitlesPanel(false)}>
+                                <X size={20} />
+                            </button>
+                        </div>
+                        <div className="p-4 space-y-4">
+                            <div>
+                                <h4 className="text-sm font-medium text-gray-400 mb-2">Audio</h4>
+                                <button className="w-full py-2 px-3 bg-[#2a2a2a] rounded flex items-center justify-between">
+                                    <span>English</span>
+                                    <Check size={18} className="text-red-600" />
+                                </button>
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-medium text-gray-400 mb-2">Subtitles</h4>
+                                <div className="space-y-1">
+                                    <button className="w-full py-2 px-3 bg-[#2a2a2a] rounded flex items-center justify-between">
+                                        <span>Off</span>
+                                    </button>
+                                    <button className="w-full py-2 px-3 bg-[#2a2a2a] rounded flex items-center justify-between">
+                                        <span>English</span>
+                                        <Check size={18} className="text-red-600" />
+                                    </button>
+                                    <button className="w-full py-2 px-3 bg-[#2a2a2a] rounded flex items-center justify-between">
+                                        <span>Spanish</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
