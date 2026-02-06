@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // Mobile Pages
 import MobileHomePage from './pages/MobileHomePage';
@@ -16,14 +16,28 @@ import MobileOnboarding from './pages/MobileOnboarding';
  * Checks if onboarding is complete, redirects if not.
  */
 export default function App() {
+  const location = useLocation();
   const [needsOnboarding, setNeedsOnboarding] = useState<boolean | null>(null);
 
-  useEffect(() => {
+  // Check onboarding status on mount and route changes
+  const checkOnboarding = useCallback(() => {
     const completed = localStorage.getItem('kinemora_onboarding_complete');
     setNeedsOnboarding(completed !== 'true');
   }, []);
 
-  // Show nothing while checking onboarding status
+  // Check on initial load
+  useEffect(() => {
+    checkOnboarding();
+  }, [checkOnboarding]);
+
+  // Re-check when navigating away from onboarding
+  useEffect(() => {
+    if (location.pathname !== '/onboarding') {
+      checkOnboarding();
+    }
+  }, [location.pathname, checkOnboarding]);
+
+  // Show loading while checking onboarding status
   if (needsOnboarding === null) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
