@@ -11,11 +11,7 @@ interface MobileHeroCardProps {
 }
 
 /**
- * Netflix-style hero card from Figma
- * - Large poster taking ~55% of screen
- * - Gradient overlay at bottom
- * - Title text (large), genre tags (small gray)
- * - Play (white) and My List (outline) buttons
+ * Netflix-style hero card - 65vh height with gradient
  */
 export default function MobileHeroCard({
     movie,
@@ -24,96 +20,63 @@ export default function MobileHeroCard({
     onToggleList,
     onCardClick
 }: MobileHeroCardProps) {
+    const genres = movie.genre_ids
+        ? getGenreNames(movie.genre_ids).slice(0, 4).join(' • ')
+        : movie.media_type === 'tv' ? 'TV Series' : 'Movie';
+
     const title = movie.title || movie.name || 'Unknown';
-    const genres = getGenreNames(movie.genre_ids || []).slice(0, 3).join(' • ');
 
     return (
-        <div
-            className="relative w-full mx-4 rounded-lg overflow-hidden cursor-pointer"
-            style={{ width: 'calc(100% - 32px)' }}
-            onClick={onCardClick}
-        >
-            {/* Poster Image - Aspect ratio ~3:4 */}
-            <div className="relative aspect-[3/4]">
-                {movie.poster_path ? (
-                    <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        alt={title}
-                        className="w-full h-full object-cover"
-                    />
-                ) : movie.backdrop_path ? (
+        <div className="relative w-full cursor-pointer" style={{ height: '65vh' }} onClick={onCardClick}>
+            <div className="absolute inset-0">
+                {movie.backdrop_path ? (
                     <img
                         src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
                         alt={title}
                         className="w-full h-full object-cover"
                     />
+                ) : movie.poster_path ? (
+                    <img
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                    />
                 ) : (
-                    <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <div className="w-full h-full bg-gray-900 flex items-center justify-center">
                         <span className="text-gray-500">{title}</span>
                     </div>
                 )}
-
-                {/* Gradient Overlay */}
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background: 'linear-gradient(to top, #181818 0%, rgba(24,24,24,0.9) 15%, rgba(24,24,24,0.5) 30%, transparent 50%)'
-                    }}
-                />
-
-                {/* Content at bottom */}
-                <div
-                    className="absolute bottom-0 left-0 right-0 p-4 space-y-3"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {/* Title - Large */}
-                    <h1 className="text-xl font-bold text-white leading-tight">
-                        {title}
-                    </h1>
-
-                    {/* Genre tags */}
-                    {genres && (
-                        <p className="text-xs text-gray-400">
-                            {genres}
-                        </p>
-                    )}
-
-                    {/* Buttons */}
-                    <div className="flex gap-2">
-                        {/* Play Button - White filled */}
-                        <button
-                            onClick={(e) => { e.stopPropagation(); onPlay(); }}
-                            className="flex-1 flex items-center justify-center gap-2 py-2 rounded-md bg-white text-black font-semibold text-sm"
-                        >
-                            <Play weight="fill" size={18} />
-                            Play
-                        </button>
-
-                        {/* My List Button - Border outline */}
-                        <button
-                            onClick={(e) => { e.stopPropagation(); onToggleList(); }}
-                            className="flex-1 flex items-center justify-center gap-2 py-2 rounded-md bg-transparent text-white font-medium text-sm border border-gray-500"
-                        >
-                            {isInList ? (
-                                <>
-                                    <Check size={18} />
-                                    My List
-                                </>
-                            ) : (
-                                <>
-                                    <Plus size={18} />
-                                    My List
-                                </>
-                            )}
-                        </button>
-                    </div>
+            </div>
+            <div
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.8) 20%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.2) 60%, transparent 100%)'
+                }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-4 space-y-3" onClick={(e) => e.stopPropagation()}>
+                <h1 className="text-2xl font-bold text-white drop-shadow-lg">{title}</h1>
+                <p className="text-sm text-gray-300">{genres}</p>
+                <div className="flex gap-2 pt-1">
+                    <button
+                        onClick={(e) => { e.stopPropagation(); onPlay(); }}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded bg-white text-black font-semibold text-sm"
+                    >
+                        <Play weight="fill" size={18} />
+                        Play
+                    </button>
+                    <button
+                        onClick={(e) => { e.stopPropagation(); onToggleList(); }}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded bg-gray-700/80 text-white font-medium text-sm border border-gray-600"
+                    >
+                        {isInList ? <Check size={18} /> : <Plus size={18} />}
+                        My List
+                    </button>
                 </div>
             </div>
         </div>
     );
 }
 
-// Genre ID to name mapping
 function getGenreNames(genreIds: number[]): string[] {
     const genreMap: Record<number, string> = {
         28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
@@ -125,5 +88,5 @@ function getGenreNames(genreIds: number[]): string[] {
         10764: 'Reality', 10765: 'Sci-Fi & Fantasy', 10766: 'Soap',
         10767: 'Talk', 10768: 'War & Politics'
     };
-    return genreIds.map(id => genreMap[id] || '').filter(Boolean);
+    return genreIds.map(id => genreMap[id] || 'Unknown').filter(Boolean);
 }

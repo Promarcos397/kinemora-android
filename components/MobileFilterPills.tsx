@@ -1,7 +1,7 @@
 import React from 'react';
-import { CaretDown } from '@phosphor-icons/react';
+import { X, CaretDown } from '@phosphor-icons/react';
 
-export type FilterType = 'none' | 'tv' | 'movies';
+export type FilterType = 'none' | 'series' | 'films';
 
 interface MobileFilterPillsProps {
     activeFilter: FilterType;
@@ -10,10 +10,7 @@ interface MobileFilterPillsProps {
 }
 
 /**
- * Netflix-style filter pills from Figma
- * - TV Shows, Movies as toggle pills
- * - Categories dropdown
- * - Light border, transparent background
+ * Netflix-style filter pills
  */
 export default function MobileFilterPills({
     activeFilter,
@@ -21,36 +18,41 @@ export default function MobileFilterPills({
     onCategoryClick
 }: MobileFilterPillsProps) {
 
+    const clearFilter = () => onFilterChange('none');
+
     return (
-        <div className="flex items-center gap-2 px-4 py-2">
-            {/* TV Shows Pill */}
+        <div className="flex items-center gap-2 px-4 py-3">
+            {activeFilter !== 'none' && (
+                <button
+                    onClick={clearFilter}
+                    className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center"
+                >
+                    <X size={14} weight="bold" className="text-white" />
+                </button>
+            )}
             <button
-                onClick={() => onFilterChange(activeFilter === 'tv' ? 'none' : 'tv')}
-                className={`px-3 py-1 rounded-full text-[13px] transition-all border ${activeFilter === 'tv'
-                        ? 'bg-white text-black border-white'
-                        : 'bg-transparent text-white border-gray-600'
+                onClick={() => onFilterChange(activeFilter === 'series' ? 'none' : 'series')}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeFilter === 'series'
+                        ? 'bg-white text-black'
+                        : 'bg-transparent border border-white/40 text-white'
                     }`}
             >
-                TV Shows
+                Series
             </button>
-
-            {/* Movies Pill */}
             <button
-                onClick={() => onFilterChange(activeFilter === 'movies' ? 'none' : 'movies')}
-                className={`px-3 py-1 rounded-full text-[13px] transition-all border ${activeFilter === 'movies'
-                        ? 'bg-white text-black border-white'
-                        : 'bg-transparent text-white border-gray-600'
+                onClick={() => onFilterChange(activeFilter === 'films' ? 'none' : 'films')}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeFilter === 'films'
+                        ? 'bg-white text-black'
+                        : 'bg-transparent border border-white/40 text-white'
                     }`}
             >
-                Movies
+                Films
             </button>
-
-            {/* Categories Dropdown */}
             <button
                 onClick={onCategoryClick}
-                className="px-3 py-1 rounded-full text-[13px] bg-transparent text-white border border-gray-600 flex items-center gap-1"
+                className="px-4 py-1.5 rounded-full text-sm font-medium bg-transparent border border-white/40 text-white flex items-center gap-1"
             >
-                Categories
+                All Categories
                 <CaretDown size={12} weight="bold" />
             </button>
         </div>

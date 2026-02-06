@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Movie } from '../types';
-import { X, Play, ArrowDown, Plus, Check, ThumbsUp, ShareNetwork } from '@phosphor-icons/react';
-import { getMovieDetails } from '../services/api';
+import { X, Play, Plus, Check, ShareNetwork, ThumbsUp, ThumbsDown } from '@phosphor-icons/react';
 
 interface MobileInfoModalProps {
     movie: Movie;
@@ -13,13 +12,7 @@ interface MobileInfoModalProps {
 }
 
 /**
- * Netflix-style Details modal from Figma
- * - Full backdrop image with gradient
- * - Close X button top right
- * - Title, year, duration, rating
- * - Play and Download buttons
- * - Description text
- * - More Like This section
+ * Netflix-style info modal for movie/show details
  */
 export default function MobileInfoModal({
     movie,
@@ -29,22 +22,12 @@ export default function MobileInfoModal({
     onToggleList
 }: MobileInfoModalProps) {
     const navigate = useNavigate();
-    const [details, setDetails] = useState<any>(null);
 
-    useEffect(() => {
-        if (isOpen && movie) {
-            const type = movie.media_type === 'tv' || movie.first_air_date ? 'tv' : 'movie';
-            getMovieDetails(Number(movie.id), type).then(setDetails);
-        }
-    }, [isOpen, movie]);
-
-    if (!isOpen) return null;
+    if (!isOpen || !movie) return null;
 
     const title = movie.title || movie.name || 'Unknown';
     const year = movie.release_date?.split('-')[0] || movie.first_air_date?.split('-')[0] || '';
-    const rating = movie.vote_average?.toFixed(1) || '0';
-    const runtime = details?.runtime || details?.episode_run_time?.[0] || 0;
-    const overview = movie.overview || 'No description available.';
+    const rating = movie.vote_average?.toFixed(1) || 'N/A';
 
     const handlePlay = () => {
         const type = movie.media_type === 'tv' || movie.first_air_date ? 'tv' : 'movie';
@@ -53,122 +36,89 @@ export default function MobileInfoModal({
     };
 
     return (
-        <div
-            className="fixed inset-0 z-[100] overflow-y-auto"
-            style={{ backgroundColor: '#181818' }}
-        >
-            {/* Backdrop Image */}
-            <div className="relative w-full aspect-[3/4]">
-                {(movie.poster_path || movie.backdrop_path) && (
-                    <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path || movie.backdrop_path}`}
-                        alt={title}
-                        className="w-full h-full object-cover"
-                    />
-                )}
-
-                {/* Gradient overlay */}
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background: 'linear-gradient(to top, #181818 0%, rgba(24,24,24,0.95) 20%, rgba(24,24,24,0.6) 40%, transparent 70%)'
-                    }}
-                />
-
+        <div className="fixed inset-0 z-[100] bg-black/80" onClick={onClose}>
+            <div
+                className="absolute bottom-0 left-0 right-0 bg-[#181818] rounded-t-xl max-h-[85vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+            >
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 flex items-center justify-center"
+                    className="absolute top-4 right-4 z-10 w-8 h-8 bg-[#181818] rounded-full flex items-center justify-center"
                 >
-                    <X size={18} weight="bold" className="text-white" />
+                    <X size={20} className="text-white" />
                 </button>
 
-                {/* Content overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 space-y-3">
-                    {/* Title */}
-                    <h1 className="text-2xl font-bold text-white">{title}</h1>
+                {/* Backdrop image */}
+                <div className="relative aspect-video">
+                    {movie.backdrop_path ? (
+                        <img
+                            src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : movie.poster_path ? (
+                        <img
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gray-800" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#181818] to-transparent" />
+                </div>
 
-                    {/* Metadata row */}
-                    <div className="flex items-center gap-3 text-sm">
-                        {year && <span className="text-green-500 font-medium">{year}</span>}
-                        {runtime > 0 && <span className="text-gray-400">{runtime}m</span>}
-                        <span className="text-gray-400">⭐ {rating}</span>
+                {/* Content */}
+                <div className="px-4 pb-8 -mt-16 relative">
+                    <h2 className="text-xl font-bold text-white mb-2">{title}</h2>
+
+                    <div className="flex items-center gap-3 text-sm text-gray-400 mb-4">
+                        <span className="text-green-500 font-medium">{rating}★</span>
+                        <span>{year}</span>
+                        {movie.media_type && (
+                            <span className="px-1.5 py-0.5 border border-gray-500 text-xs">
+                                {movie.media_type === 'tv' ? 'TV' : 'MOVIE'}
+                            </span>
+                        )}
                     </div>
 
-                    {/* Buttons */}
-                    <div className="flex gap-2">
-                        {/* Play Button */}
-                        <button
-                            onClick={handlePlay}
-                            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-md bg-white text-black font-semibold text-sm"
-                        >
-                            <Play weight="fill" size={18} />
-                            Play
-                        </button>
+                    {/* Play button */}
+                    <button
+                        onClick={handlePlay}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded bg-white text-black font-semibold text-sm mb-4"
+                    >
+                        <Play weight="fill" size={18} />
+                        Play
+                    </button>
 
-                        {/* Download Button */}
+                    {/* Overview */}
+                    <p className="text-sm text-gray-300 mb-4 line-clamp-4">{movie.overview}</p>
+
+                    {/* Action buttons */}
+                    <div className="flex items-center justify-around py-4 border-t border-gray-700">
                         <button
-                            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-md bg-gray-700 text-white font-medium text-sm"
+                            onClick={onToggleList}
+                            className="flex flex-col items-center gap-1"
                         >
-                            <ArrowDown size={18} />
-                            Download
+                            {isInList ? (
+                                <Check size={24} className="text-white" />
+                            ) : (
+                                <Plus size={24} className="text-gray-400" />
+                            )}
+                            <span className="text-xs text-gray-400">My List</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1">
+                            <ThumbsUp size={24} className="text-gray-400" />
+                            <span className="text-xs text-gray-400">Rate</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1">
+                            <ShareNetwork size={24} className="text-gray-400" />
+                            <span className="text-xs text-gray-400">Share</span>
                         </button>
                     </div>
                 </div>
             </div>
-
-            {/* Description */}
-            <div className="px-4 py-4">
-                <p className="text-sm text-gray-300 leading-relaxed">
-                    {overview}
-                </p>
-            </div>
-
-            {/* Action buttons row */}
-            <div className="flex justify-around px-4 py-4 border-t border-gray-800">
-                <button
-                    onClick={onToggleList}
-                    className="flex flex-col items-center gap-1 text-gray-400"
-                >
-                    {isInList ? <Check size={24} /> : <Plus size={24} />}
-                    <span className="text-xs">My List</span>
-                </button>
-                <button className="flex flex-col items-center gap-1 text-gray-400">
-                    <ThumbsUp size={24} />
-                    <span className="text-xs">Rate</span>
-                </button>
-                <button className="flex flex-col items-center gap-1 text-gray-400">
-                    <ShareNetwork size={24} />
-                    <span className="text-xs">Share</span>
-                </button>
-            </div>
-
-            {/* More Like This section */}
-            {details?.recommendations?.results?.length > 0 && (
-                <div className="px-4 py-4">
-                    <h2 className="text-[15px] font-medium text-white mb-3">More Like This</h2>
-                    <div className="grid grid-cols-3 gap-2">
-                        {details.recommendations.results.slice(0, 9).map((item: any) => (
-                            <div
-                                key={item.id}
-                                className="aspect-[2/3] bg-gray-800 rounded overflow-hidden"
-                            >
-                                {item.poster_path && (
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                                        alt={item.title || item.name}
-                                        className="w-full h-full object-cover"
-                                        loading="lazy"
-                                    />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Bottom padding for safe area */}
-            <div className="h-20" />
         </div>
     );
 }
