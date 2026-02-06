@@ -70,8 +70,8 @@ export default function App() {
       <Route path="/my-list" element={<MobileMyListPage />} />
 
       {/* Filtered home views */}
-      <Route path="/series" element={<MobileHomePage initialFilter="series" />} />
-      <Route path="/films" element={<MobileHomePage initialFilter="films" />} />
+      <Route path="/series" element={<MobileHomePage initialFilter="tv" />} />
+      <Route path="/films" element={<MobileHomePage initialFilter="movies" />} />
 
       {/* Search */}
       <Route path="/search" element={<MobileSearchPage />} />

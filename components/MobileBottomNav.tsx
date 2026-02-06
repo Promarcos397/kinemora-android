@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { House, BookOpen, Fire, Heart } from '@phosphor-icons/react';
+import { House, MagnifyingGlass, Fire, ArrowDown, User } from '@phosphor-icons/react';
 
 /**
- * Netflix-style bottom navigation bar
- * - Solid dark gray background (#121212)
- * - 4 tabs: Home, Reads, New & Hot, My List
- * - Filled icons when active, outlined when inactive
+ * Netflix-style bottom navigation from Figma
+ * - 5 tabs: Home, Search, New & Hot, Downloads, My Netflix
+ * - Icons with labels below
+ * - Gray #808080 inactive, white active
  */
 export default function MobileBottomNav() {
     const navigate = useNavigate();
@@ -14,9 +14,10 @@ export default function MobileBottomNav() {
 
     const tabs = [
         { id: 'home', label: 'Home', path: '/', icon: House },
-        { id: 'reads', label: 'Reads', path: '/reads', icon: BookOpen },
+        { id: 'search', label: 'Search', path: '/search', icon: MagnifyingGlass },
         { id: 'new-hot', label: 'New & Hot', path: '/new-hot', icon: Fire },
-        { id: 'my-list', label: 'My List', path: '/my-list', icon: Heart },
+        { id: 'downloads', label: 'Downloads', path: '/downloads', icon: ArrowDown },
+        { id: 'my-netflix', label: 'My Netflix', path: '/my-list', icon: User },
     ];
 
     const isActive = (path: string) => {
@@ -27,12 +28,12 @@ export default function MobileBottomNav() {
     return (
         <nav
             className="fixed bottom-0 left-0 right-0 z-50"
-            style={{ backgroundColor: '#121212' }}
+            style={{ backgroundColor: '#000000' }}
         >
-            {/* Top border line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
+            {/* Top border */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gray-800" />
 
-            <div className="flex items-center justify-around h-14 px-2">
+            <div className="flex items-center justify-around py-2">
                 {tabs.map((tab) => {
                     const active = isActive(tab.path);
                     const Icon = tab.icon;
@@ -41,26 +42,21 @@ export default function MobileBottomNav() {
                         <button
                             key={tab.id}
                             onClick={() => navigate(tab.path)}
-                            className="flex flex-col items-center justify-center gap-0.5 min-w-[64px] py-2"
+                            className="flex flex-col items-center gap-1 min-w-[56px]"
                         >
                             <Icon
-                                size={22}
+                                size={20}
                                 weight={active ? 'fill' : 'regular'}
-                                className={active ? 'text-white' : 'text-gray-400'}
+                                className={active ? 'text-white' : 'text-gray-500'}
                             />
                             <span
-                                className={`text-[10px] ${active ? 'text-white' : 'text-gray-400'}`}
+                                className={`text-[9px] ${active ? 'text-white' : 'text-gray-500'}`}
                             >
                                 {tab.label}
                             </span>
                         </button>
                     );
                 })}
-            </div>
-
-            {/* Home indicator (for iOS-style) */}
-            <div className="h-[34px] flex items-center justify-center">
-                <div className="w-32 h-1 bg-white/30 rounded-full" />
             </div>
         </nav>
     );
