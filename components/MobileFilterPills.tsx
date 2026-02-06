@@ -7,71 +7,63 @@ interface MobileFilterPillsProps {
     activeFilter: FilterType;
     onFilterChange: (filter: FilterType) => void;
     onCategoryClick: () => void;
-    onBackClick?: () => void;
-    showBackButton?: boolean;
 }
 
 /**
- * Netflix-style filter pills: transparent with white outline, 90% rounded
- * - X button clears active filter
- * - Series/Films toggle between states
- * - All Categories opens overlay
+ * Netflix-style filter pills
+ * - Transparent background with thin white border
+ * - Small X to clear filter when active
+ * - Series, Films, All Categories dropdown
  */
 export default function MobileFilterPills({
     activeFilter,
     onFilterChange,
-    onCategoryClick,
-    onBackClick,
-    showBackButton = false
+    onCategoryClick
 }: MobileFilterPillsProps) {
 
-    const handlePillClick = (filter: FilterType) => {
-        if (activeFilter === filter) {
-            onFilterChange('none');
-        } else {
-            onFilterChange(filter);
-        }
-    };
-
-    const pillBaseStyles = "px-4 py-1.5 text-sm font-medium transition-all duration-200 flex-shrink-0";
-    const pillInactiveStyles = "border border-white/40 text-white bg-transparent rounded-[20px]";
-    const pillActiveStyles = "bg-white text-black border border-white rounded-[20px]";
+    const clearFilter = () => onFilterChange('none');
 
     return (
-        <div className="fixed top-12 left-0 right-0 bg-[#0a0a0a] flex items-center gap-2.5 px-4 py-2.5 z-40 overflow-x-auto scrollbar-hide">
-            {/* X button to clear filter - only show when filter is active */}
-            {(showBackButton || activeFilter !== 'none') && (
+        <div className="flex items-center gap-2 px-4 py-3">
+            {/* Clear button when filter active */}
+            {activeFilter !== 'none' && (
                 <button
-                    onClick={onBackClick || (() => onFilterChange('none'))}
-                    className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center flex-shrink-0 bg-transparent"
+                    onClick={clearFilter}
+                    className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center"
                 >
-                    <X size={16} weight="bold" className="text-white" />
+                    <X size={14} weight="bold" className="text-white" />
                 </button>
             )}
 
-            {/* Series pill */}
+            {/* Series Pill */}
             <button
-                onClick={() => handlePillClick('series')}
-                className={`${pillBaseStyles} ${activeFilter === 'series' ? pillActiveStyles : pillInactiveStyles}`}
+                onClick={() => onFilterChange(activeFilter === 'series' ? 'none' : 'series')}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeFilter === 'series'
+                        ? 'bg-white text-black'
+                        : 'bg-transparent border border-white/40 text-white'
+                    }`}
             >
                 Series
             </button>
 
-            {/* Films pill */}
+            {/* Films Pill */}
             <button
-                onClick={() => handlePillClick('films')}
-                className={`${pillBaseStyles} ${activeFilter === 'films' ? pillActiveStyles : pillInactiveStyles}`}
+                onClick={() => onFilterChange(activeFilter === 'films' ? 'none' : 'films')}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeFilter === 'films'
+                        ? 'bg-white text-black'
+                        : 'bg-transparent border border-white/40 text-white'
+                    }`}
             >
                 Films
             </button>
 
-            {/* All Categories dropdown */}
+            {/* Categories Dropdown */}
             <button
                 onClick={onCategoryClick}
-                className={`${pillBaseStyles} ${pillInactiveStyles} flex items-center gap-1.5`}
+                className="px-4 py-1.5 rounded-full text-sm font-medium bg-transparent border border-white/40 text-white flex items-center gap-1"
             >
                 All Categories
-                <CaretDown size={14} weight="bold" />
+                <CaretDown size={12} weight="bold" />
             </button>
         </div>
     );

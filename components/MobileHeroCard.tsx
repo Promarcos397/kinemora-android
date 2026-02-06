@@ -1,114 +1,129 @@
 import React from 'react';
-import { Play, Plus, Check } from '@phosphor-icons/react';
 import { Movie } from '../types';
-
-// Genre map for TMDB
-const GENRE_MAP: { [key: number]: string } = {
-    28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
-    80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family',
-    14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music',
-    9648: 'Mystery', 10749: 'Romance', 878: 'Sci-Fi', 10770: 'TV Movie',
-    53: 'Thriller', 10752: 'War', 37: 'Western',
-    10759: 'Action & Adventure', 10762: 'Kids', 10763: 'News',
-    10764: 'Reality', 10765: 'Sci-Fi & Fantasy', 10766: 'Soap',
-    10767: 'Talk', 10768: 'War & Politics'
-};
+import { Play, Plus, Check } from '@phosphor-icons/react';
 
 interface MobileHeroCardProps {
     movie: Movie;
     isInList: boolean;
-    onPlayClick: () => void;
-    onListClick: () => void;
+    onPlay: () => void;
+    onToggleList: () => void;
     onCardClick: () => void;
 }
 
 /**
- * Netflix-style hero card
- * - Large poster (50%+ screen)
- * - Title overlay at bottom
- * - Genre tags with bullet separator
+ * Netflix-style hero card - takes up ~65% of screen height
+ * - Large backdrop image with gradient overlay
+ * - Movie/show logo or title at bottom
+ * - Genre tags with bullet separators
  * - Play and My List buttons
  */
 export default function MobileHeroCard({
     movie,
     isInList,
-    onPlayClick,
-    onListClick,
+    onPlay,
+    onToggleList,
     onCardClick
 }: MobileHeroCardProps) {
+    // Get genres as string
+    const genres = movie.genre_ids
+        ? getGenreNames(movie.genre_ids).slice(0, 4).join(' • ')
+        : movie.media_type === 'tv' ? 'TV Series' : 'Movie';
 
-    // Generate tags from genres
-    const getTags = (): string[] => {
-        if (!movie.genre_ids || movie.genre_ids.length === 0) return [];
-        return movie.genre_ids
-            .slice(0, 4)
-            .map(id => GENRE_MAP[id])
-            .filter(Boolean);
-    };
-
-    const tags = getTags();
+    const year = movie.release_date?.split('-')[0] || movie.first_air_date?.split('-')[0] || '';
     const title = movie.title || movie.name || 'Unknown';
-    const posterUrl = movie.poster_path
-        ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
-        : null;
 
     return (
         <div
-            className="relative rounded-lg overflow-hidden mx-4 cursor-pointer"
+            className="relative w-full cursor-pointer"
+            style={{ height: '65vh' }}
             onClick={onCardClick}
         >
-            {/* Poster */}
-            {posterUrl ? (
-                <img
-                    src={posterUrl}
-                    alt={title}
-                    className="w-full aspect-[2/3] object-cover max-h-[55vh]"
-                    loading="eager"
-                />
-            ) : (
-                <div className="w-full aspect-[2/3] max-h-[55vh] bg-gray-800 flex items-center justify-center">
-                    <span className="text-gray-500 text-xl">{title}</span>
-                </div>
-            )}
+            {/* Backdrop Image */}
+            <div className="absolute inset-0">
+                {movie.backdrop_path ? (
+                    <img
+                        src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                    />
+                ) : movie.poster_path ? (
+                    <img
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                        <span className="text-gray-500">{title}</span>
+                    </div>
+                )}
+            </div>
 
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+            {/* Gradient Overlay - stronger at bottom */}
+            <div
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.8) 20%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.2) 60%, transparent 100%)'
+                }}
+            />
 
             {/* Content at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 p-4">
-                {/* Title */}
-                <h1 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+            <div
+                className="absolute bottom-0 left-0 right-0 p-4 space-y-3"
+                onClick={(e) => e.stopPropagation()}
+            >
+                {/* Title - Large and bold */}
+                <h1 className="text-2xl font-bold text-white drop-shadow-lg">
                     {title}
                 </h1>
 
-                {/* Tags - bullet separated */}
-                {tags.length > 0 && (
-                    <div className="text-sm text-gray-300 mb-4">
-                        {tags.join(' • ')}
-                    </div>
-                )}
+                {/* Genre tags with bullets */}
+                <p className="text-sm text-gray-300">
+                    {genres}
+                </p>
 
                 {/* Buttons */}
-                <div className="flex gap-3">
+                <div className="flex gap-2 pt-1">
                     <button
-                        onClick={(e) => { e.stopPropagation(); onPlayClick(); }}
-                        className="flex-1 bg-white text-black py-2.5 px-4 rounded flex items-center justify-center gap-2 font-semibold active:bg-gray-200 transition-colors"
+                        onClick={(e) => { e.stopPropagation(); onPlay(); }}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded bg-white text-black font-semibold text-sm"
                     >
-                        <Play weight="fill" size={20} />
+                        <Play weight="fill" size={18} />
                         Play
                     </button>
                     <button
-                        onClick={(e) => { e.stopPropagation(); onListClick(); }}
-                        className="flex-1 bg-[#333]/80 text-white py-2.5 px-4 rounded flex items-center justify-center gap-2 font-semibold border border-white/20 active:bg-[#444] transition-colors"
+                        onClick={(e) => { e.stopPropagation(); onToggleList(); }}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded bg-gray-700/80 text-white font-medium text-sm border border-gray-600"
                     >
                         {isInList ? (
-                            <><Check weight="bold" size={20} /> My List</>
+                            <>
+                                <Check size={18} />
+                                My List
+                            </>
                         ) : (
-                            <><Plus weight="bold" size={20} /> My List</>
+                            <>
+                                <Plus size={18} />
+                                My List
+                            </>
                         )}
                     </button>
                 </div>
             </div>
         </div>
     );
+}
+
+// Genre ID to name mapping
+function getGenreNames(genreIds: number[]): string[] {
+    const genreMap: Record<number, string> = {
+        28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
+        80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family',
+        14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music',
+        9648: 'Mystery', 10749: 'Romance', 878: 'Sci-Fi', 10770: 'TV Movie',
+        53: 'Thriller', 10752: 'War', 37: 'Western',
+        10759: 'Action & Adventure', 10762: 'Kids', 10763: 'News',
+        10764: 'Reality', 10765: 'Sci-Fi & Fantasy', 10766: 'Soap',
+        10767: 'Talk', 10768: 'War & Politics'
+    };
+    return genreIds.map(id => genreMap[id] || 'Unknown').filter(Boolean);
 }

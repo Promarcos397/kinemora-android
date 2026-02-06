@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Movie } from '../types';
 import { useGlobalContext } from '../context/GlobalContext';
+import { Movie } from '../types';
+
+// Components
 import MobilePageBar from '../components/MobilePageBar';
 import MobileBottomNav from '../components/MobileBottomNav';
 import MobileSettingsSheet from '../components/MobileSettingsSheet';
 import MobileInfoModal from '../components/MobileInfoModal';
-import { Plus, Check } from '@phosphor-icons/react';
 
 /**
- * My List page - shows user's saved content
+ * Netflix-style My List page
+ * - 3-column grid of posters
+ * - Clean minimal layout
  */
 export default function MobileMyListPage() {
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ export default function MobileMyListPage() {
     const isInList = (id: number) => myList.some(item => item.id === id);
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-white pb-16">
+        <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
             {/* Page Bar */}
             <MobilePageBar
                 title="My List"
@@ -28,21 +31,20 @@ export default function MobileMyListPage() {
             />
 
             {/* Content */}
-            <div className="pt-14 px-4">
+            <div className="pt-16 px-2">
                 {myList.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-[60vh] text-gray-500">
-                        <Plus size={48} className="mb-4" />
-                        <p className="text-center">Your list is empty</p>
-                        <p className="text-center text-sm mt-2">
-                            Add movies and shows to keep track of what you want to watch
+                    <div className="flex flex-col items-center justify-center py-24 text-center">
+                        <p className="text-gray-400 text-lg mb-2">Your list is empty</p>
+                        <p className="text-gray-500 text-sm">
+                            Tap + on any title to add it here
                         </p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-3 gap-2 pt-4">
+                    <div className="grid grid-cols-3 gap-2 py-4">
                         {myList.map((item) => (
                             <div
                                 key={item.id}
-                                className="aspect-[2/3] bg-gray-800 rounded overflow-hidden cursor-pointer relative"
+                                className="aspect-[2/3] bg-gray-800 rounded overflow-hidden cursor-pointer"
                                 onClick={() => setSelectedMovie(item)}
                             >
                                 {item.poster_path ? (
@@ -53,7 +55,7 @@ export default function MobileMyListPage() {
                                         loading="lazy"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-gray-600 text-xs p-1 text-center">
+                                    <div className="w-full h-full flex items-center justify-center p-2 text-center text-gray-500 text-xs">
                                         {item.title || item.name}
                                     </div>
                                 )}
